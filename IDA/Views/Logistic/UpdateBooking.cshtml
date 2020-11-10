@@ -1,0 +1,135 @@
+﻿@model IDA.Models.LogisticBooking
+
+@{
+    ViewBag.Title = "UpdateBooking";
+    Layout = "~/Views/Shared/LogisticManagerLayout.cshtml";
+}
+
+<link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+<link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+
+<main class="pt-5 mx-sm-4">
+    <link href="~/Content/css/modalStyle.css" rel="stylesheet" />
+    <div id="page-content-wrapper">
+        <br /> <br />
+
+        <div class="card mb-4 wow fadeIn">
+            <!--Card content-->
+            <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                <h4 class="mb-2 mb-sm-0 pt-1">
+                    <a style="color:orangered; ">Update Booking</a>
+
+                </h4>
+                <a href="@Url.Action("manageLogistics","Logistic")" style="font-style:italic">Back</a>
+
+            </div>
+        </div>
+
+
+        <br />
+
+        <div class="jumbotron" style="margin-bottom:60px">
+            @if (TempData["Success"] != null && TempData["Success"].Equals("successful"))
+            {
+                <script type="text/javascript">
+
+                    $(document).ready(function () {
+
+                        swal({
+                            title: "",
+                            text: "You have updated booking status",
+                            type: "success",
+                            confirmButtonClass: "btn-info",
+                            showOkButton: true,
+                            confirmButtonText: 'OK',
+                            //timer: 2000
+                        },
+
+                        );
+
+                    });
+
+                </script>
+            }
+            @if (ViewBag.Error  != null && ViewBag.Error == "Select Status")
+            {
+        <div class="alert alert-danger">
+            <a class="close" data-dismiss="alert" href="/Account/Login">×</a>
+            @ViewBag.Error
+        </div>
+            }
+            
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.LogisticBookingId)
+
+
+                    @Html.HiddenFor(model => model.EmpId)
+
+                    @Html.HiddenFor(model => model.ProjectId)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ReasonForBooking, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ReasonForBooking, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.ReasonForBooking, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FromDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ToDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(model => model.VehicleId)
+
+                    @*<div class="form-group">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select class="form-control" id="dropdown" required="true" name="@Html.NameFor(model => model.Status)">
+                                <option value="0">Choose</option>
+                                <option value="Approved">Approve</option>
+                                <option value="Declined">Decline</option>
+
+
+                            </select>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model => model.BookingDate)
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</main>

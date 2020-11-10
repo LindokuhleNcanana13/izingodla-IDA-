@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "StaffPortal";
+    Layout = "~/Views/Shared/StuffLayout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+
+<main class="pt-5 mx-sm-4">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/css/modalStyle.css" rel="stylesheet" />
+   
+    <div id="page-content-wrapper">
+        <br /> <br />
+        <div class="card mb-4 wow fadeIn">
+            <!--Card content-->
+            <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                <h4 class="mb-2 mb-sm-0 pt-1">
+                    <a style="color:orangered; ">Staff Portal</a>
+
+                </h4>
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Projects</h5>
+                        <hr />
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Upload Report</h5>
+                        <hr />
+                        @using (Html.BeginForm("StaffPortal", "Staff", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <input type="file" name="file" /><br><br>
+                            <input type="submit" value="Upload" />
+                            <br><br>
+                            @ViewBag.Message
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @ViewBag.Message
+</main>
+
+

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<IDA.Models.Project_Request>
+
+@{
+    ViewBag.Title = "newRequests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<main class="pt-5 mx-sm-4">
+    <link href="~/Content/css/modalStyle.css" rel="stylesheet" />
+    <div id="page-content-wrapper">
+        <br /> <br />
+        <div class="card mb-4 wow fadeIn">
+            <!--Card content-->
+            <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                <h4 class="mb-2 mb-sm-0 pt-1">
+                    <a style="color:orangered; ">Manage New Project Requests</a>
+
+                </h4>
+                <a href="/Employees/Dashboard" style="font-style:italic">Back</a>
+            </div>
+        </div>
+        <div class="jumbotron">
+            @using (Html.BeginForm(new { Controller = "Employees", Action="AddProject" }))
+            {
+                <table class="table table-striped table-bordered">
+                    <tr class="table-info">
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProjectName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateRequested)
+                        </th>
+
+                        <th> Action</th>
+                        
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProjectName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateRequested)
+                            </td>
+
+                            <td>
+                               
+                                @Html.ActionLink("View Details", "ProjectDetails", new { id = item.id }) 
+                              
+                            </td>
+                            @*<td>
+
+                                @*<a class="btn btn-default">Accept</a>
+                                <input type="submit" class="btn btn-default" value="Accept"/>
+                                <a class="btn btn-warning" href="#">Dismiss</a>
+
+                            </td>*@
+                        </tr>
+                    }
+
+                </table>
+            }
+        </div>
+        </div>
+         
+</main>

@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewBag.Title = "MonthExpense";
+    Layout = "~/Views/Shared/FinanceManagerLayout.cshtml";
+}
+<head>
+</head>
+<html>
+<body>
+    <main class="pt-5 mx-lg-5">
+        <div class="container-fluid mt-5">
+            <div class="container-fluid mt-5">
+                <div class="card mb-4 wow fadein">
+                    <div class="card-body d-sm-flex justify-content-between">
+
+                        <h4 class="mb-2 mb-sm-0 pt-1">
+
+                            <span style=" color: orangered;">Monthly Expenditure</span>
+                        </h4>
+
+                        <form class="d-flex justify-content-center">
+                        </form>
+
+                    </div>
+
+                </div>
+                <!-- Heading -->
+                <!-- Heading -->
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+                    <!--Grid column-->
+                    <div class="col-md-12 mb-4">
+                        <!--Card-->
+
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                        <script>
+                            google.charts.load('current', {packages: ['corechart', 'bar']});
+                            google.charts.setOnLoadCallback(drawchart);
+                            function drawchart() {
+
+                                //var data = google.visualization.arrayToDataTable([
+                                //    ['Year', 'Sales', 'Expenses', 'Profit'],
+                                var data = new google.visualization.DataTable();
+
+                                data.addColumn('string','BookingDate');
+                                data.addColumn('number', 'salary');
+
+                                $.get("/FinanceManager/MonthlyExpenses", {}, function (chartsdata) {
+
+                                    $.each(chartsdata, function (i, v) {
+                                        data.addRow([v.BookingDate, v.salary]);
+                                    });
+
+                                    var options = {
+                                        title: "Monthly Expenditure",
+                                        width: 'auto',
+                                        height: 'auto',
+                                        bar: { groupWidth: "75%" },
+                                        legend: { position: "none" },
+                                        title: 'Time of Day',
+                                       format: 'h:mm a',
+                                    };
+
+                                    var materialOptions = {
+                                        width: 900,
+                                        chart: {
+                                            title: 'Nearby galaxies',
+                                            subtitle: 'distance on the left, brightness on the right'
+                                        },
+                                        series: {
+                                            0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
+                                            1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
+                                        },
+                                        axes: {
+                                            y: {
+                                                distance: { label: 'parsecs' }, // Left y-axis.
+                                                brightness: { side: 'right', label: 'apparent magnitude' } // Right y-axis.
+                                            }
+                                        }
+                                    };
+
+
+                                    var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+                                    chart.draw(data, options);
+                                })
+                            }
+                        </script>
+
+
+
+
+                        <div class="tile">
+                            <h3 class="tile-title"></h3>
+
+                            <div>
+                                <div id="columnchart_values" style="width:100%; height:300px"></div>
+                                <h6>
+                                </h6>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column-->
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('#dt-filter-select').dataTable({
+
+                    initComplete: function () {
+                        this.api().columns().every(function () {
+                            var column = this;
+                            var select = $('<select  class="browser-default custom-select form-control-sm"><option value="" selected>Search</option></select>')
+                                .appendTo($(column.footer()).empty())
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        });
+                    }
+                });
+            });
+            // Get the modal
+            var modal = document.getElementById('id01');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+        </script>
+    </main>
+
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+
+    <script src="~/Content/js/plugins/pace.min.js"></script>
+    <!-- Page specific javascripts-->
+
+    <script src="~/Content/js/plugins/chart.js"></script>
+    <script type="text/javascript">
+        var data = {
+            labels: ["January", "February", "March", "April", "May"],
+            datasets: [
+                {
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [65, 59, 80, 81, 56]
+                },
+                {
+                    label: "My Second dataset",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [28, 48, 40, 19, 86]
+                }
+            ]
+        };
+        var pdata = [
+            {
+                value: 300,
+                color: "#46BFBD",
+                highlight: "#5AD3D1",
+                label: "Complete"
+            },
+            {
+                value: 50,
+                color: "#F7464A",
+                highlight: "#FF5A5E",
+                label: "In-Progress"
+            }
+        ]
+
+        var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+        var lineChart = new Chart(ctxl).Line(data);
+
+        var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+        var pieChart = new Chart(ctxp).Pie(pdata);
+    </script>
+    <!-- Google analytics script-->
+    <script type="text/javascript">
+        if (document.location.hostname == 'pratikborsadiya.in') {
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-72504830-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+</body>
+</html>
+
+<!-- Essential javascripts for application to work-->

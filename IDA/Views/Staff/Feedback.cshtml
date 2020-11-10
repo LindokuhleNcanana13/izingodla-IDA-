@@ -1,0 +1,95 @@
+﻿@model IDA.Models.Feedback
+
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/StuffLayout.cshtml";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Feedback</title>
+
+</head>
+<body>
+    @if (ViewBag.Message != null &&   ViewBag.Message.Equals("success!!"))
+    {
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                swal({
+                    title: "",
+                    text: "Feedback sent Successfully",
+                    type: "success",
+                    confirmButtonClass: "btn-info",
+                    showOkButton: true,
+                    confirmButtonText: 'OK',
+                    closeOnConfirm: false
+                },
+
+                );
+
+            });
+
+        </script>
+    }
+    <div class="jumbotron" style="margin-bottom: 0px;height: 100vh;">
+        <div id="login-row" class="row justify-content-center align-items-center" style="margin-left: 200px">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <div class="card" style=" margin-top:110px;">
+                        <div class="card-title" style="text-align:center; background-color: #2295c9;">
+                            <h4 style="color:whitesmoke">Please let us know why you won't be available!</h4>
+                        </div>
+                        <div class="card-body">
+                            @using (Html.BeginForm("Feedback", "Staff", FormMethod.Post))
+                            {
+                                <h5 style="text-align:center; color:#013970; "></h5>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email", @placeholder = "Enter your email address", @required = true } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "What was meeting subject", @required = true } })
+                                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @placeholder = "Enter meeting start date", @required = true } })
+                                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                        @Html.TextAreaFor(model => model.Reason, 3, 80, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Enter your feedback", @required = true } })
+                                        @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10" style="color: green;">
+                                      
+                                    </div>
+                                </div>
+                                <input type="submit" value="Submit" class="btn btn-info btn-md" style="width:100%" />
+
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

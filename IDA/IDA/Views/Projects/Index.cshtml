@@ -1,0 +1,73 @@
+﻿@model IEnumerable<IDA.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <main class="pt-5 mx-sm-5">
+        <div id="page-content-wrapper">
+            <br /> <br />
+            <div class="card mb-4 wow fadeIn">
+                <!--Card content-->
+                <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                    <h4 class="mb-2 mb-sm-0 pt-1">
+                        <a style="color:orangered; ">Manage Projects</a>
+
+                    </h4>
+                    <a href="#" style="border-radius:10px;" class="list-group-item active waves-effect">
+                        <i class="fa fa-plus mr-1"></i>File Project Bid
+                    </a>
+                </div>
+            </div>
+
+
+            <br />
+            @*<a href="/Projects/Create" style="border-radius:10px;" class="list-group-item active waves-effect">
+                <i class="fa fa-plus mr-1"></i>Add Project
+            </a>*@
+            <div class="jumbotron">
+                
+                <table class="table table-striped table-bordered">
+                    <tr class="table-info">
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProjectName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date_Started)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date_Concluded)
+                        </th>
+                        <th>Actions</th>
+                        <th>Task</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProjectName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date_Started)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date_Concluded)
+                            </td>
+                            
+                            <td>
+                                <a href="@Url.Action("Edit","Projects", new { id = item.ProjectId })" style="color:blue;"> <i class="fa fa-pencil"></i> </a>&nbsp;
+                                <a href="@Url.Action("Details","Projects", new { id = item.ProjectId })" style="color:orangered;"> <i class="fa fa-bars"></i></a>&nbsp;
+                                
+                            </td>
+                            <td>
+                                <a class="btn btn-default" href="@Url.Action("Progress","Projects", new { id = item.ProjectId })">View Project Tasks</a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                </div>
+</div>
+</main>

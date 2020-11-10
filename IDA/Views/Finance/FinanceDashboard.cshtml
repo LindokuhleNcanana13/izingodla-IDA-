@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Tittle = "FinanceDashboard";
+    Layout = "~/Views/Shared/FinanceManagerLayout.cshtml";
+}
+
+<html>
+<head>
+    <title>DashBoard</title>
+</head>
+<body>
+
+    <main class="pt-5 mx-lg-5">
+
+        <br />
+        <div class="container-fluid mt-5">
+
+
+            <div class="card mb-4 wow fadein">
+
+
+                <div class="card-body d-sm-flex justify-content-between">
+
+                    <h4 class="mb-2 mb-sm-0 pt-1">
+
+                        <span style=" color: orangered;">Dashboard</span>
+                    </h4>
+
+                    <form class="d-flex justify-content-center">
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+        @if (Session["AdminId"] != null)
+        {
+
+        }
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align:center;color:cornflowerblue;">Expenditure</h5>
+                        <hr />
+                        <img src="~/Content/images/iconfinder_pay-credit_card-expenditure-bill-payment_method-banking_4288566.png" style="margin-left:55px" height="160" />
+                        <a href="/Finance/GetAllExpense" class="btn btn-primary" style="margin-left:70px;border-radius:20px;">Expenditure</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align:center;color:cornflowerblue;">Invoice</h5>
+                        <hr />
+
+                        <img src="~/Content/images/invoice-256.png" style="margin-left:55px;color:cornflowerblue;" height="160" />
+                        <a href="/Finance/InvoiceDetails" class="btn btn-primary" style="margin-left:70px;border-radius:20px;">Invoice</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align:center;color:cornflowerblue;">Salaries</h5>
+                        <hr />
+                        <img src="~/Content/images/business-23-512.png" style="margin-left:55px" height="160" />
+                        <a href="/Finance/SalaryDetails" class="btn btn-primary" style="margin-left:70px;border-radius:20px;">Salary</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+    </main>
+    <br />
+    <br />
+    <br />
+
+</body>
+</html>
+

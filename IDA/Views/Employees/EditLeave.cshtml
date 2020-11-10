@@ -1,0 +1,104 @@
+﻿@model IDA.Models.Leave
+
+@{
+    ViewBag.Title = "EditLeave";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <main class="pt-5 mx-sm-4">
+        <div id="page-content-wrapper">
+            <br /> <br />
+            <div class="card mb-4 wow fadeIn">
+                <!--Card content-->
+                <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                    <h4 class="mb-2 mb-sm-0 pt-1">
+                        <a style="color:orangered; ">Manage Leave</a>
+
+                    </h4>
+                    <a style="font-style:italic;color: dodgerblue;" href="/Employees/GetLeaves">/Back</a>
+                </div>
+            </div>
+
+
+            <br />
+            <div class="jumbotron">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.LeaveId)
+
+                        @Html.HiddenFor(model => model.AppDate)
+                        @Html.HiddenFor(model => model.Duration)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ApplicantName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ApplicantName, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                @Html.ValidationMessageFor(model => model.ApplicantName, "", new { @class = "text-danger" })
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <select class="form-control" id="exampleFormControlSelect2" name="@Html.NameFor(model => model.Status)">
+                                        <option value="0">Choose</option>
+                                        <option value="Approved">Approve</option>
+                                        <option value="Declined">Decline</option>
+                                    </select>
+                                </div>
+                            </div>
+                            @ViewBag.Message
+                            <div class="form-group" id="FeedTextbox">
+                                <label class="control-label col-md-2">Feedback Message</label>
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.FeedMessage, 3, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", required = "true" })
+                                    @Html.ValidationMessageFor(model => model.FeedMessage, "", new { @class = "text-danger" })
+                                </div>
+
+                                @Html.HiddenFor(model => model.DateApproved)
+                                @Html.HiddenFor(model => model.EmpId)
+
+                            </div>
+                            @Html.HiddenFor(model => model.ReasonForApplying)
+                            @Html.HiddenFor(model => model.Fromdate)
+                            @Html.HiddenFor(model => model.ToDate)
+                            @Html.HiddenFor(model => model.NoOfDays)
+                            @Html.HiddenFor(model => model.Comment)
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-success" />
+                                    <a class="btn btn-primary" @Html.ActionLink("Back to List", "GetLeaves")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script language="javascript">
+                       function toggleHidden() { //that's your code in a function
+                                        if ($('#exampleFormControlSelect2').val() === 'Approved') {
+                                            $('#FeedTextbox').show(1000);
+                                            $('#FeedTextbox').change(function () {
+                                                var SelectedCategory = $('#other').val().toString();
+                                                $('#hiddenId').val(SelectedCategory);
+                                            });
+                                        }
+                                        else {
+                                            $('#other').hide(1000);
+                                            var SelectedCategory = $('#SelectedCategoryId option:selected').text();
+                                            $('#hiddenId').val(SelectedCategory);
+                                        }
+                                    }
+
+                                    $(document).ready(function () {
+                                        toggleHidden(); //execute the toggle on load
+                                        $('#SelectedCategoryId').change(toggleHidden); //execute the toggle on change
+                                    });
+                    </script>
+                }
+
+
+
+            </div>
+           </div>
+</main>

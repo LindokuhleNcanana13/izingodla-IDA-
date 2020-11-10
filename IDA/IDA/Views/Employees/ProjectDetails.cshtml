@@ -1,0 +1,165 @@
+﻿@model IDA.Models.Project_Request
+
+@{
+    ViewBag.Title = "ProjectDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="pt-5 mx-sm-4">
+    <link href="~/Content/css/modalStyle.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <div id="page-content-wrapper">
+        <br /> <br />
+        <div class="card mb-4 wow fadeIn">
+            <!--Card content-->
+            <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                <h4 class="mb-2 mb-sm-0 pt-1">
+                    <a style="color:orangered; ">Manage New Project Requests</a>
+
+                </h4>
+                <a href="/Employees/Dashboard" style="font-style:italic">Back</a>
+            </div>
+        </div>
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-lg-8">
+
+
+                    <div class="card">
+                        <div class="card-title" style="background-color:#f2f1ed">
+                            <h5 style="text-align:center; margin-top:10px"> Project Information</h5><hr />
+                        </div>
+                        <div class="card-body">
+                            <div>
+
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ProjectName)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ProjectName)
+
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.DateRequested)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.DateRequested)
+                                    </dd>
+
+
+
+
+
+                                </dl>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="card-footer">
+
+                            <p>
+                                <a class="btn btn-success" onclick="Button1">Accept</a>
+                                <a class="btn btn-warning" data-toggle="modal" data-target="#modal">Decline</a>
+                                <a class="btn btn-primary" @Html.ActionLink("Back", "newRequests")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-title" style="background-color:#f2f1ed">
+                            <h5 style="text-align:center;margin-top:10px">Attached Document</h5> <hr />
+                        </div>
+
+                        <div class="card-body">
+                            <p style="text-align:center">--No File--</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary" style="width:100%"> <i class="fa fa-download m-1"></i>Download File</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function onclick() {
+    location.href = '@Url.Action("AddProject", "Employees")';
+    }
+    </script>
+    <div id="modal" class="modal fade" role='dialog' data-backdrop="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Assign Task </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    <label class="label">Reason for decline</label>
+                    <input type="text" class="text-body" />
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-backdrop="false" class="btn btn-success" onclick="GetSurname()" data-dismiss="modal">Submit</button>
+                    <button type="button" data-backdrop="false" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        $(function () {
+
+            $('#Button1').click(function () {
+                var ProjectName = @Session["ProjectName"];
+                var Date_Started = @DateTime.Now;
+                var Date_concluded = $("");
+                var ClientId = @Model.ClientId;
+                var EmpId = $("");
+                if (ProjectName != '' && Date_Started != '' && ClientIdClientId != '') {
+                    $.ajax
+
+                        ({
+
+                            type: 'POST',
+                            url: 'ProjectDetails.cshtml/insertdata',
+                            async: false,
+                            data: "{'ProjectName':'" + ProjectName + "','Date_Started':'" + Date_Started + "','Date_concluded':'" + Date_concluded + "','ClientId':'" + ClientId + "', 'EmpId':'" + EmpId +"'}",
+                            contentType: 'application/json; charset =utf-8',
+                            success: function (data) {
+
+                                var obj = data.d;
+                                if (obj == 'true') {
+                                   @Session["ProjectName"]
+                                    @DateTime.Now
+                                    $('').val('');
+                                    @Model.ClientId
+                                    $('').val('');
+                                    alert("Data Saved Successfully");
+
+                                }
+                            },
+
+                            error: function (result) {
+                                alert("Error Occured, Try Again");
+                            }
+                        });
+                } else {
+                    alert("Pleae Fill all the Fields");
+                    return false;
+                }
+            })
+        });
+    </script>
+
+</main>

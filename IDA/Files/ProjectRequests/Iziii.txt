@@ -1,0 +1,116 @@
+ public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(Tbl_User tb)//Forgot password 
+        {
+
+            if (ModelState.IsValid)
+            {
+                BookingDatabaseEntities3 db = new BookingDatabaseEntities3();
+                var user = (from userlist in db.Tbl_User
+                            where userlist.Email == tb.Email
+                            select new
+                            {
+                                userlist.UserId,
+                                userlist.FirstName,
+                                userlist.Password,
+
+                            }).ToList();
+                if (user.FirstOrDefault() == null)
+                {
+                    ViewBag.MessageError = "System cannot recognise your emai!!";
+                }
+                else if (user.FirstOrDefault() != null)
+                {
+                    Session["FirstName"] = user.FirstOrDefault().FirstName;
+                    Session["UserId"] = user.FirstOrDefault().UserId;
+                    Session["Password"] = user.FirstOrDefault().Password;
+                    string message = string.Empty;
+                    switch (tb.UserId)
+                    {
+                        case -1:
+                            message = "";
+                            break;
+                        case -2:
+                            message = "";
+                            break;
+                        default:
+                            message = "Password sent successful.\\nUser Id: " + tb.UserId.ToString();
+                            SendPasswordToEmail(tb);
+                            break;
+
+                    }
+                    ViewBag.MessageSuccess = "Password sent!! Please check your email";
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid Email Provided");
+                }
+            }
+            return View();
+        }
+        public ActionResult ActivationPassword()
+        {
+            ViewBag.Message = "Invalid Password.";
+            if (RouteData.Values["id"] != null)
+            {
+                Guid activationCode = new Guid(RouteData.Values["id"].ToString());
+                BookingDatabaseEntities3 usersEntities = new BookingDatabaseEntities3();
+                Tbl_UserActivation userActivation = usersEntities.Tbl_UserActivation.Where(p => p.ActivationCode == activationCode).FirstOrDefault();
+                if (userActivation != null)
+                {
+                    usersEntities.Tbl_UserActivation.Remove(userActivation);
+                    usersEntities.SaveChanges();
+                    ViewBag.Message = "Password successful.";
+                }
+            }
+
+            return View();
+        }
+        private void SendPasswordToEmail(Tbl_User user)//Send password to user email address
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(user.Email))
+                {
+                    ViewBag.Message = "Email required!!!!";
+                }
+                int Password = Convert.ToInt32(Session["Password"]);
+                string FirstName = Session["FirstName"].ToString();
+
+                Guid activationCode = Guid.NewGuid();
+                BookingDatabaseEntities3 usersEntities = new BookingDatabaseEntities3();
+                usersEntities.Tbl_UserActivation.Add(new Tbl_UserActivation
+                {
+                    UserId = user.UserId,
+                    ActivationCode = activationCode
+                });
+                usersEntities.SaveChanges();
+                using (MailMessage mm = new MailMessage("eservicesbookingsystem@gmail.com", user.Email))
+                {
+                    mm.Subject = "Password Recovery";
+                    string body = "Hello " + FirstName + ",";
+                    body += "<br /><br />Your password is:" + Password + "";
+                    body += "<br /><br />Please click the following link to login to your account";
+                    body += "<br /><a href = '" + string.Format("{0}://{1}/Home/UserLogin/{2}", Request.Url.Scheme, Request.Url.Authority, activationCode) + "'>Click here to login to your account.</a>";
+                    body += "<br /><br />Thanks";
+                    mm.Body = body;
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential("eservicesbookingsystem@gmail.com", "booking@123");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Error" + ex.Message;
+            }
+        }

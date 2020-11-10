@@ -1,0 +1,126 @@
+﻿@*@model IDA.Models.User
+@{
+    Layout = null;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+@model IDA.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div class="tile">
+        <div class="imgcontainer" style="text-align:center">
+            <img src="~/Content/images/izingodla-logo.PNG"  class="avatar" />
+            </div>
+        <br/><br/>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+
+                <div class="form-horizontal">
+
+                    <div id="login" style="padding: 10px 100px; margin-top:-70px;">
+
+
+                        <div class="container">
+                            <div id="login-row" class="row justify-content-center align-items-center">
+                                <div id="login-column" class="col-md-6">
+                                    <div id="login-box" class="col-md-12">
+                                        <br />
+
+                                        <form id="login-form" class="form" action="" method="post">
+                                            <h3 class="text-center text-info">Login</h3>
+
+                                            <div class="form-group">
+                                                <label for="username" class="text-info">Username:</label><br>
+
+                                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password" class="text-info">Password:</label><br>
+
+                                                <input type="password" @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                                       @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                @*<label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label>*@<br>
+                                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Login" style="width: 510px; ">
+                                            </div>
+
+                                            <div id="register-link" class="text-right">
+                                                <a href="/Account/SignUp" class="text-info">Sign Up</a>
+                                                <a href="#" class="text-info">Forgot Password?</a>
+
+                                            </div>
+                                            <div class="form-control-feedback" style="position:fixed">
+                                                <h6 style="margin-left:80px;" @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+</body>
+</html>
+<footer style="position: fixed;  left: 0;
+   bottom: 0;
+   width: 100%; background-color:#2cadd1; height:50px;">
+    <p>&copy; @DateTime.Now.Year - Powered by <a href=" http://www.izingcweti.co.za" style="color:orangered">IDAS</a></p>
+</footer>

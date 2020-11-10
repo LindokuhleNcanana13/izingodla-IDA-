@@ -1,0 +1,15 @@
+
+            Employee employee = db.Employees.Find(id);
+            User user = new User();
+            var u = db.Users.ToList();
+            foreach (var item in u)
+            {
+                if (item.EmpId == id)
+                {
+                    db.Users.Remove(item);
+                    db.SaveChanges();
+                }
+            }
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+            return RedirectToAction("Index");
