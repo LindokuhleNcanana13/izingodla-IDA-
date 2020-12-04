@@ -20,5 +20,6 @@ namespace IDA.Models
         public Nullable<System.DateTime> StartDate { get; set; }
         public string Reason { get; set; }
         public string description { get; set; }
+        public string MeetingId { get; set; }
     }
 }

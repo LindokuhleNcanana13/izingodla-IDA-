@@ -24,5 +24,6 @@ namespace IDA.Models
         public string NewClientEmail { get; set; }
         public System.DateTime TDate { get; set; }
         public string Description { get; set; }
+        public string MeetingNo { get; set; }
     }
 }

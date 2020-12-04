@@ -26,7 +26,8 @@
                     </h4>
 
 
-                    <p style="font:italic">Welcome @Session["Name"]  @Session["Surname"]</p>
+                    <a href="/Employees/ViewPDF" data-toggle="tooltip" title="Load user manual for guidance" style="float:right;" class="btn btn-info"><i class="fa fa-file mr-1" style="color:white;"></i>User Manual</a>
+
                 </div>
 
             </div>
@@ -66,16 +67,20 @@
                 </div>
             </div>
             <br />
-          
+
 
 
         </div>
         @*@Session["Name"]
-        @Session["Surname"]
-        @Session["Email"]
-        @Session["Address"]
-        @Session["Position"]*@
+            @Session["Surname"]
+            @Session["Email"]
+            @Session["Address"]
+            @Session["Position"]*@
     </main>
-
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 </body>
 </html>

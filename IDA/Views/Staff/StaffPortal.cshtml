@@ -58,6 +58,7 @@
         <a class="btn btn-info" href="@Session["Path"]" id="btnAlertMessage"><i class="fa fa-sign-in mr-2"></i>Move to Manager Portal</a>
 
 
+        <a href="/Staff/ViewPDF" data-toggle="tooltip" title="Load user manual for guidance" style="float:right;" class="btn btn-info"><i class="fa fa-file mr-1" style="color:white;"></i>User Manual</a>
 
         <div class="col-sm-12">
             <div class="card">
@@ -114,37 +115,6 @@
         </div>
     </div>
 
-    @*<script>
-
-            $(document).ready(function () {
-
-
-                $("#btnAlertMessage").click(function () {
-                    if (TempData["AlertMessage"] != null && TempData["AlertMessage"] == "You are not assigned as Project Manager to any project") {
-                        swal({
-                            title: "",
-                            text: "Select Project and Project Manager",
-                            type: "danger",
-                            showCancelButtonClass: "btn-primary",
-                            confirmButtonText: 'OK',
-                            closeOnConfirm: false,
-                            closeOnCancel: false
-
-                        });
-                    }
-                });
-
-            });
-
-
-        </script>*@
-
-
-
-
-
-
-
 
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
@@ -169,24 +139,6 @@
     <script src="~/MD/js/addons/datatables-select2.min.js"></script>
     <script>
 
-        //// Material Design example
-        //$(document).ready(function () {
-        //    $('#dtMaterialDesignExample').DataTable();
-        //    $('#dtMaterialDesignExample_wrapper').find('label').each(function () {
-        //        $(this).parent().append($(this).children());
-        //    });
-        //    $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('input').each(function () {
-        //        const $this = $(this);
-        //        $this.attr("placeholder", "Search");
-        //        $this.removeClass('form-control-sm');
-        //    });
-        //    $('#dtMaterialDesignExample_wrapper .dataTables_length').addClass('d-flex flex-row');
-        //    $('#dtMaterialDesignExample_wrapper .dataTables_filter').addClass('md-form');
-        //    $('#dtMaterialDesignExample_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
-        //    $('#dtMaterialDesignExample_wrapper select').addClass('mdb-select');
-        //    $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
-        //    $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('label').remove();
-        //});
         $(document).ready(function () {
             $('#dt-filter-select').dataTable({
 
@@ -222,4 +174,10 @@
             }
         }
     </script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
 </main>

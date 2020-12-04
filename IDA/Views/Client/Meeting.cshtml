@@ -34,6 +34,7 @@
         <div id="calender" class="child">
             <h1></h1>
             <button type="button" id="button" style="width:24%;float:left" class="btn btn-default" onclick="window.location.href = '/Client/AddMeeting';"><i class="fa fa-plus m-2"></i>Schedule new meeting</button>
+            <button type="button" id="button" style="width:24%;float:left;margin-left:20px" class="btn btn-default" onclick="window.location.href = '@Url.Action("getfeedback","Client", new { id = Convert.ToInt32(Session["ClientId"])})'">Feedback</button>
         </div>
     </div>
     <div id="myModal" class="modal fade" role="dialog">

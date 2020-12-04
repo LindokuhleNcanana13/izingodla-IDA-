@@ -9,6 +9,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using EmailAddress = SendGrid.Helpers.Mail.EmailAddress;
@@ -48,7 +50,7 @@ namespace IDA.Controllers
                     if (file != null && file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
-                        var path1 = Path.Combine(Server.MapPath("~/Files/ProjectRequests"), fileName);
+                        var path1 = Path.Combine(Server.MapPath("~/MD/img"), fileName);
                         file.SaveAs(path1);
                         p.FilePath = path1;
                         p.ProjectName = f["ProjectName"];
@@ -114,11 +116,17 @@ namespace IDA.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult AddMeeting(Meeting user)
         {
-            // int EmpId = Convert.ToInt32(Session["EmpId"]);
+            int random;
+
             if (ModelState.IsValid)
             {
+                Random rand = new Random();
+                rand.Next();
+                random = rand.Next();
+
                 IdaDBEntities db = new IdaDBEntities();
                 user.TDate = DateTime.Now;
+                user.MeetingNo = random.ToString();
                 user.EmpId = null;
                 user.ClientId = Convert.ToInt32(Session["ClientId"]);
                 db.Meetings.Add(user);
@@ -144,34 +152,55 @@ namespace IDA.Controllers
 
         public void SendEmail(Meeting user)
         {
+
+
             using (var ctx = new IdaDBEntities())
             {
 
+
+                var MeetingNo = ctx.Database.SqlQuery<string>("SELECT MeetingNo from Meeting where TDate=(SELECT MAX(TDate) FROM Meeting)").SingleOrDefault();
                 var StartDate = ctx.Database.SqlQuery<DateTime>("select StartDate from Meeting where TDate=(SELECT MAX(TDate) FROM Meeting)").SingleOrDefault();
                 var EndDate = ctx.Database.SqlQuery<DateTime>("SELECT EndDate from Meeting where TDate=(SELECT MAX(TDate) FROM Meeting)").SingleOrDefault();
                 var Subject = ctx.Database.SqlQuery<string>("SELECT Subject from Meeting where TDate=(SELECT MAX(TDate) FROM Meeting)").SingleOrDefault();
                 var Description = ctx.Database.SqlQuery<string>("SELECT Description from Meeting where TDate=(SELECT MAX(TDate) FROM Meeting)").SingleOrDefault();
 
-                //var apiKey = Environment.GetEnvironmentVariable("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");
-                var apiKey = "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";
-                var client = new SendGridClient(apiKey);
-                var from = new EmailAddress("Izingodla@gmail.com", "Meeting Invitation");
-                var Emailsubject = "Meeting Invitation";
-                foreach (var address in user.NewClientEmail.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries))
+                if (string.IsNullOrWhiteSpace(user.MeetingId.ToString()))
                 {
-                    var to = new EmailAddress(address);
+                    ViewBag.Message = "Email required!!!!";
+                }
 
-                    var plainTextContent = "Meeting Invitation";
-                    string htmlContent = "Dear Sir/Ma’am,";
-                    htmlContent += "<br /><br />You are being invited to the meeting by Izingodla Engineering.";
-                    htmlContent += "<br /><br /> Subject : " + Subject + "";
-                    htmlContent += "<br /> Location : " + Description + "";
-                    htmlContent += "<br /> Start Time : " + StartDate + "";
-                    htmlContent += "<br /> End Time : " + EndDate + "";
-                    htmlContent += "<br /><br /> We would be awaiting your esteemed presence in the meeting. Please feel free to contact us anytime, if you require any change in the meeting schedule.";
-                    htmlContent += "<br /><br />Thanks <br /> Izingodla Team";
-                    var msg = MailHelper.CreateSingleEmail(from, to, Emailsubject, plainTextContent, htmlContent);
-                    var response = client.SendEmailAsync(msg);
+                Guid activationCode = Guid.NewGuid();
+                IdaDBEntities usersEntities = new IdaDBEntities();
+                usersEntities.Tbl_UserActivation.Add(new Tbl_UserActivation
+                {
+                    ClientId = user.MeetingId,
+                    ActivationCode = activationCode
+                });
+                usersEntities.SaveChanges();
+                using (MailMessage mm = new MailMessage("Izingodla.IDA@gmail.com", user.NewClientEmail))
+                {
+                    mm.Subject = "Meeting Invitation";
+                    string body = "Dear Sir/Ma'am,";
+                    body += "<br /><br />You are being invited to the meeting by Izingodla Engineering.";
+                    body += "<br /><br /><b>Meeting ID: </b>" + MeetingNo;
+                    body += "<br /><br />Subject: " + Subject;
+                    body += "<br /><br />Start Time: " + StartDate;
+                    body += "<br /><br />End Time: " + EndDate;
+                    body += "<br /><br />Location: " + Description;
+                    body += "<br /><br />Please click the following link if you won't be available";
+                    body += "<br /><a href = '" + string.Format("{0}://{1}/Employees/Feedback/{2}", Request.Url.Scheme, Request.Url.Authority, null) + "'>Click here to give feedback.</a>";
+                    body += "<br /><br /> We would be awaiting your esteemed presence in the meeting. Please feel free to contact us anytime, if you require any change in the meeting schedule.";
+                    body += "<br /><br />Thanks <br /> Izingodla Team";
+                    mm.Body = body;
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential("Izingodla.IDA@gmail.com", "izingodla@123");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
                 }
             }
         }
@@ -263,6 +292,104 @@ namespace IDA.Controllers
                 ModelState.AddModelError("", "Too many records will be returned, please try to minimize your selection and try again." + ex);
             }
             return View(dt);
+        }
+        public ActionResult getfeedback(int? id)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection())
+                {
+                    con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=IdaDB;Integrated Security=True";
+
+                    SqlCommand cmd = new SqlCommand("  select f.FeedbackId,f.Reason, f.MeetingId, f.Email from Meeting m, Feedback f  where m.MeetingNo = f.MeetingId and ClientId =" + id + "", con);
+
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+                    }
+                    con.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                ModelState.AddModelError("", "Too many records will be returned, please try to minimize your selection and try again." + ex);
+            }
+            return View(dt);
+        }
+        public ActionResult deletenow(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Feedback meter = db.Feedbacks.Find(id);
+            if (meter == null)
+            {
+                return HttpNotFound();
+            }
+            return View(meter);
+        }
+
+        // post: flat/delete/5
+        [HttpPost, ActionName("deletenow")]
+        [ValidateAntiForgeryToken]
+        public ActionResult deleteconfirm(int id)
+        {
+            Feedback meter = db.Feedbacks.Find(id);
+            db.Feedbacks.Remove(meter);
+            db.SaveChanges();
+            return RedirectToAction("getfeedback");
+        }
+        public ActionResult MeetingDetails(int? id)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection())
+                {
+                    con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=IdaDB;Integrated Security=True";
+
+                    SqlCommand cmd = new SqlCommand("select Subject,StartDate,EndDate,Description from Meeting where MeetingNo =" + id + "", con);
+
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+                    }
+                    con.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                ModelState.AddModelError("", "Too many records will be returned, please try to minimize your selection and try again." + ex);
+            }
+            return View(dt);
+        }
+        [HttpGet]
+        public ActionResult Comment(int? id)
+        {
+          
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Comment(int? id,ClientComment comment)
+        {
+            comment.ProjectId = Convert.ToInt32(id);
+            comment.ClientId = Convert.ToInt32(Session["ClientId"]);
+            
+                db.ClientComments.Add(comment);
+                db.SaveChanges();
+                TempData["Message"] = "Success";
+           
+            return View();
+        }
+        public ActionResult ViewPDF()
+        {
+            return View();
         }
     }
 }

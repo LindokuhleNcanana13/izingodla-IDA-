@@ -52,8 +52,8 @@
                         </li>
                         @if (ViewData["GetProject"] != null)
                         {
-                            <a href="/Manager/GetProjects">
-                                <img src="~/Content/images/notification-flat.png" height="30px;" style="margin-top:10px; margin-left:50px;" /><span class="badge badge-light"><a style="color:red;">@ViewData["GetTotalNotifications"]</a></span>
+                            <a href="/Manager/GetProjects" >
+                                <img data-toggle="tooltip" title="Notifications" src="~/Content/images/notification-flat.png" height="30px;" style="margin-top:10px; margin-left:50px;" /><span class="badge badge-light"><a style="color:red;">@ViewData["GetTotalNotifications"]</a></span>
                             </a>
 
                         }
@@ -64,16 +64,7 @@
                     </ul>
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">
-                        <li class="nav-item">
-                            <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                        </li>
+
                         <div class="dropdown show">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 @Session["Email"]
@@ -334,6 +325,11 @@
     @RenderBody()
     @RenderSection("Scripts", false)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 </body>
 </html>
 

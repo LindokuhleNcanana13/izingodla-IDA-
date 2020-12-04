@@ -1,0 +1,67 @@
+﻿@model IDA.Models.Assignment
+
+@{
+    ViewBag.Title = "EditTaskStatus";
+    Layout = "~/Views/Shared/StuffLayout.cshtml";
+}
+
+
+    <main class="pt-5 mx-sm-4">
+        <link href="~/Content/css/modalStyle.css" rel="stylesheet" />
+        <div id="page-content-wrapper">
+            <br /> <br />
+            <div class="card mb-4 wow fadeIn">
+                <!--Card content-->
+                <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                    <h4 class="mb-2 mb-sm-0 pt-1">
+                        <a style="color:orangered; ">Your Project Tasks</a>
+
+                    </h4>
+                    <a href="@Url.Action("ViewTask","Staff", new { id = Convert.ToInt32(Session["ProjectId"])})" style="font-style:italic">Back</a>
+                </div>
+            </div>
+            <br />
+       
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Select Stage</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.AssignmentId)
+
+
+                @Html.HiddenFor(model => model.TaskId)
+                @Html.HiddenFor(model => model.SubTaskId)
+                @Html.HiddenFor(model => model.ProjectId)
+                @Html.HiddenFor(model => model.EmpId)
+                @Html.HiddenFor(model => model.DateAssigned)
+                @Html.HiddenFor(model => model.ScheduleTime)
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Stage, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="form-control" name="@Html.NameFor(model => model.Stage)">
+                            <option>Choose</option>
+                            <option value="2">In-Progress</option>
+                            <option value="3">Awaiting</option>
+                            <option value="4">Completed</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" style="width:99%" />
+                        
+                    </div>
+                </div>
+            </div>
+        }
+       </div>
+</main>

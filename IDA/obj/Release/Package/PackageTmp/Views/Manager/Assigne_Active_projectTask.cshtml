@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewBag.Title = "Assigne_Active_projectTask";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+    <link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+    @*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">*@
+</head>
+<body>
+    <center>
+
+        <main class="pt-5 mx-sm-4">
+            <link href="~/Content/css/modalStyle.css" rel="stylesheet" />
+            <div id="page-content-wrapper">
+                <br /> <br />
+                <div class="card mb-4 wow fadeIn">
+                    <!--Card content-->
+                    <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                        <h4 class="mb-2 mb-sm-0 pt-1">
+                            <a style="color:orangered; ">Assign Project Managers</a>
+
+                        </h4>
+
+                    </div>
+                </div>
+
+                <br />
+                <div class="jumbotron">
+                    @if (TempData["AlertMessage"] != null && TempData["AlertMessage"].Equals("Task Assigned Successfull!"))
+                    {
+                        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                    swal({
+                        title: "",
+                        text: "Task Assigned Successfully",
+                        type: "success",
+                        confirmButtonClass: "btn-info",
+                        showOkButton: true,
+                        confirmButtonText: 'OK',
+                        closeOnConfirm: false
+                    },
+
+                    );
+
+            });
+
+                        </script>
+                    }
+                    <div class="col-md-6">
+                        <div class="tile">
+                            <h3 class="tile-title">Assign Task</h3>
+                            <div class="tile-body">
+                                @using (Html.BeginForm("Assigne_Active_projectTask", "Manager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                                        <div class="form-group">
+
+                                            <input type="hidden" id="valueGet2" @*readonly="readonly"*@ name="valueG2" />
+                                            @Html.DropDownList("EmpId", ViewBag.ChooseEmp as SelectList, "---- CHOOSE EMPLOYEE----", new { @onChange = "selectedText2(this)", @class = "form-control", @required = true })
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <input type="hidden" id="valueGet" @*readonly="readonly"*@ name="valueG" />
+                                            @Html.DropDownList("TaskId", ViewBag.ChooseTask as SelectList, "---- CHOOSE TASK ----", new { @onChange = "selectedText(this)", @class = "form-control", @required = true })
+
+                                        </div>
+
+
+
+                                        <div class="form-group">
+
+                                            <input type="hidden" id="valueGet" @*readonly="readonly"*@ name="valueG" />
+                                            @Html.DropDownList("SubTaskId", ViewBag.ChoosesubTask as SelectList, "---- CHOOSE SUBTASK ----", new { @onChange = "selectedText(this)", @class = "form-control", @required = true })
+
+                                        </div>
+
+
+
+                                        <hr />
+                                        <div class="text-center">
+                                            <input name="recover-submit" class="btn btn-lg btn-info btn-block" value="Submit" type="submit">
+                                        </div>
+                                        <div class="text-center" style="color:red">
+                                            @ViewBag.ErrorBox
+                                        </div>
+
+                                        @*<div class="text-center" style="color:green">
+                                            @ViewBag.SucessMsg
+                                        </div>*@
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="id01" class="modal">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+                <form class="modal-content" action="/action_page.php">
+                    <div class="container">
+                        <h1>Delete Account</h1>
+                        <p>Are you sure you want to delete your account?</p>
+
+                        <div class="clearfix">
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <script>
+                // Get the modal
+                var modal = document.getElementById('id01');
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
+        </main>
+
+    </center>
+
+    <script>
+        // Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').materialSelect();
+        });
+
+
+        function SaveForm10() {
+            var Agree = $("#ProjectId").val();
+            var Comment = $("#TaskId").val();
+            var stateId = $("SubTaskId").val();
+            var Pro = $("EmpId").val();
+
+            var data = $("#Statement25").serialize();
+            $.ajax({
+                type: "post",
+                data: data,
+                url: "/Projects/TaskAssigne",
+                success: function (result) {
+                    alert(result);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

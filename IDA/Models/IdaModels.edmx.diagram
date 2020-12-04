@@ -26,6 +26,7 @@
         <AssociationConnector Association="IdaDBModel.FK__AssignedP__EmpId__531856C7" ManuallyRouted="false" />
         <AssociationConnector Association="IdaDBModel.FK__AssignedP__Proje__540C7B00" ManuallyRouted="false" />
         <EntityTypeShape EntityType="IdaDBModel.Feedback" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="IdaDBModel.ClientComment" Width="1.5" PointX="3.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

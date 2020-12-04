@@ -255,6 +255,9 @@
     <Compile Include="Models\Client.cs">
       <DependentUpon>IdaModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClientComment.cs">
+      <DependentUpon>IdaModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Employee.cs">
       <DependentUpon>IdaModels.tt</DependentUpon>
     </Compile>
@@ -403,6 +406,126 @@
     <Content Include="Content\sweetalert\sweet-alert.css" />
     <Content Include="Content\sweetalert\thumbs-up.jpg" />
     <Content Include="favicon.ico" />
+    <Content Include="FeaturesForPDF\js\bootstrap.min.js" />
+    <Content Include="FeaturesForPDF\js\c3-charts\c3-active.js" />
+    <Content Include="FeaturesForPDF\js\c3-charts\c3.min.js" />
+    <Content Include="FeaturesForPDF\js\c3-charts\d3.min.js" />
+    <Content Include="FeaturesForPDF\js\calendar\fullcalendar-active.js" />
+    <Content Include="FeaturesForPDF\js\calendar\fullcalendar.min.js" />
+    <Content Include="FeaturesForPDF\js\calendar\moment.min.js" />
+    <Content Include="FeaturesForPDF\js\card.js" />
+    <Content Include="FeaturesForPDF\js\charts\area-chart.js" />
+    <Content Include="FeaturesForPDF\js\charts\bar-chart.js" />
+    <Content Include="FeaturesForPDF\js\charts\Chart.js" />
+    <Content Include="FeaturesForPDF\js\charts\line-chart.js" />
+    <Content Include="FeaturesForPDF\js\charts\rounded-chart.js" />
+    <Content Include="FeaturesForPDF\js\chart\jquery.peity.min.js" />
+    <Content Include="FeaturesForPDF\js\chart\peity-active.js" />
+    <Content Include="FeaturesForPDF\js\chosen\chosen-active.js" />
+    <Content Include="FeaturesForPDF\js\chosen\chosen.jquery.js" />
+    <Content Include="FeaturesForPDF\js\chosen\chosen.jquery.min.js" />
+    <Content Include="FeaturesForPDF\js\code-editor\code-editor-active.js" />
+    <Content Include="FeaturesForPDF\js\code-editor\code-editor.js" />
+    <Content Include="FeaturesForPDF\js\code-editor\codemirror.js" />
+    <Content Include="FeaturesForPDF\js\colorpicker\color-picker-active.js" />
+    <Content Include="FeaturesForPDF\js\colorpicker\jquery.spectrum.min.js" />
+    <Content Include="FeaturesForPDF\js\counterup\counterup-active.js" />
+    <Content Include="FeaturesForPDF\js\counterup\jquery.counterup.min.js" />
+    <Content Include="FeaturesForPDF\js\counterup\waypoints.min.js" />
+    <Content Include="FeaturesForPDF\js\cropper\cropper-actice.js" />
+    <Content Include="FeaturesForPDF\js\cropper\cropper.min.js" />
+    <Content Include="FeaturesForPDF\js\data-map\d3.min.js" />
+    <Content Include="FeaturesForPDF\js\data-map\data-maps-active.js" />
+    <Content Include="FeaturesForPDF\js\data-map\datamaps.all.min.js" />
+    <Content Include="FeaturesForPDF\js\data-map\topojson.js" />
+    <Content Include="FeaturesForPDF\js\data-table\bootstrap-editable.js" />
+    <Content Include="FeaturesForPDF\js\data-table\bootstrap-table-editable.js" />
+    <Content Include="FeaturesForPDF\js\data-table\bootstrap-table-export.js" />
+    <Content Include="FeaturesForPDF\js\data-table\bootstrap-table-resizable.js" />
+    <Content Include="FeaturesForPDF\js\data-table\bootstrap-table.js" />
+    <Content Include="FeaturesForPDF\js\data-table\colResizable-1.5.source.js" />
+    <Content Include="FeaturesForPDF\js\data-table\data-table-active.js" />
+    <Content Include="FeaturesForPDF\js\data-table\tableExport.js" />
+    <Content Include="FeaturesForPDF\js\datapicker\bootstrap-datepicker.js" />
+    <Content Include="FeaturesForPDF\js\datapicker\bootstrap-datepicker.min.js" />
+    <Content Include="FeaturesForPDF\js\datapicker\datepicker-active.js" />
+    <Content Include="FeaturesForPDF\js\datepicker\datepicker-active.js" />
+    <Content Include="FeaturesForPDF\js\datepicker\jquery-ui.min.js" />
+    <Content Include="FeaturesForPDF\js\dropzone\dropzone.js" />
+    <Content Include="FeaturesForPDF\js\duallistbox\duallistbox.active.js" />
+    <Content Include="FeaturesForPDF\js\duallistbox\jquery.bootstrap-duallistbox.js" />
+    <Content Include="FeaturesForPDF\js\e-payment.js" />
+    <Content Include="FeaturesForPDF\js\editable\bootstrap-datetimepicker.js" />
+    <Content Include="FeaturesForPDF\js\editable\bootstrap-editable.js" />
+    <Content Include="FeaturesForPDF\js\editable\jquery.mockjax.js" />
+    <Content Include="FeaturesForPDF\js\editable\mock-active.js" />
+    <Content Include="FeaturesForPDF\js\editable\moment.min.js" />
+    <Content Include="FeaturesForPDF\js\editable\select2.js" />
+    <Content Include="FeaturesForPDF\js\editable\xediable-active.js" />
+    <Content Include="FeaturesForPDF\js\form-validation\form-active.js" />
+    <Content Include="FeaturesForPDF\js\form-validation\jquery.form.min.js" />
+    <Content Include="FeaturesForPDF\js\form-validation\jquery.validate.min.js" />
+    <Content Include="FeaturesForPDF\js\google.maps\google.maps-active.js" />
+    <Content Include="FeaturesForPDF\js\icheck\icheck-active.js" />
+    <Content Include="FeaturesForPDF\js\icheck\icheck.min.js" />
+    <Content Include="FeaturesForPDF\js\input-mask\jasny-bootstrap.min.js" />
+    <Content Include="FeaturesForPDF\js\ionRangeSlider\ion.rangeSlider.active.js" />
+    <Content Include="FeaturesForPDF\js\ionRangeSlider\ion.rangeSlider.min.js" />
+    <Content Include="FeaturesForPDF\js\jquery-price-slider.js" />
+    <Content Include="FeaturesForPDF\js\jquery.maskedinput.min.js" />
+    <Content Include="FeaturesForPDF\js\jquery.meanmenu.js" />
+    <Content Include="FeaturesForPDF\js\jquery.payform.min.js" />
+    <Content Include="FeaturesForPDF\js\jquery.scrollUp.min.js" />
+    <Content Include="FeaturesForPDF\js\jquery.sticky.js" />
+    <Content Include="FeaturesForPDF\js\knob\jquery.knob.js" />
+    <Content Include="FeaturesForPDF\js\knob\knob-active.js" />
+    <Content Include="FeaturesForPDF\js\main.js" />
+    <Content Include="FeaturesForPDF\js\masking-active.js" />
+    <Content Include="FeaturesForPDF\js\metisMenu\metisMenu-active.js" />
+    <Content Include="FeaturesForPDF\js\metisMenu\metisMenu.min.js" />
+    <Content Include="FeaturesForPDF\js\morrisjs\home3-active.js" />
+    <Content Include="FeaturesForPDF\js\morrisjs\morris-active-pro.js" />
+    <Content Include="FeaturesForPDF\js\morrisjs\morris-active.js" />
+    <Content Include="FeaturesForPDF\js\morrisjs\morris.js" />
+    <Content Include="FeaturesForPDF\js\morrisjs\raphael-min.js" />
+    <Content Include="FeaturesForPDF\js\multiple-email\multiple-email-active.js" />
+    <Content Include="FeaturesForPDF\js\notifications\Lobibox.js" />
+    <Content Include="FeaturesForPDF\js\notifications\notification-active.js" />
+    <Content Include="FeaturesForPDF\js\owl.carousel.min.js" />
+    <Content Include="FeaturesForPDF\js\password-meter\password-meter-active.js" />
+    <Content Include="FeaturesForPDF\js\password-meter\pwstrength-bootstrap.min.js" />
+    <Content Include="FeaturesForPDF\js\password-meter\zxcvbn.js" />
+    <Content Include="FeaturesForPDF\js\pdf\jquery.media.js" />
+    <Content Include="FeaturesForPDF\js\pdf\pdf-active.js" />
+    <Content Include="FeaturesForPDF\js\peity\jquery.peity.min.js" />
+    <Content Include="FeaturesForPDF\js\peity\peity-active.js" />
+    <Content Include="FeaturesForPDF\js\plugins.js" />
+    <Content Include="FeaturesForPDF\js\rangle-slider\jquery-ui-1.10.4.custom.min.js" />
+    <Content Include="FeaturesForPDF\js\rangle-slider\jquery-ui-touch-punch.min.js" />
+    <Content Include="FeaturesForPDF\js\rangle-slider\rangle-active.js" />
+    <Content Include="FeaturesForPDF\js\scrollbar\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="FeaturesForPDF\js\scrollbar\mCustomScrollbar-active.js" />
+    <Content Include="FeaturesForPDF\js\select2\select2-active.js" />
+    <Content Include="FeaturesForPDF\js\select2\select2.full.min.js" />
+    <Content Include="FeaturesForPDF\js\sparkline\jquery.charts-sparkline.js" />
+    <Content Include="FeaturesForPDF\js\sparkline\jquery.sparkline.min.js" />
+    <Content Include="FeaturesForPDF\js\sparkline\sparkline-active.js" />
+    <Content Include="FeaturesForPDF\js\summernote\summernote-active.js" />
+    <Content Include="FeaturesForPDF\js\summernote\summernote.min.js" />
+    <Content Include="FeaturesForPDF\js\tab.js" />
+    <Content Include="FeaturesForPDF\js\tawk-chat.js" />
+    <Content Include="FeaturesForPDF\js\touchspin\jquery.bootstrap-touchspin.min.js" />
+    <Content Include="FeaturesForPDF\js\touchspin\touchspin-active.js" />
+    <Content Include="FeaturesForPDF\js\tree-line\jstree.active.js" />
+    <Content Include="FeaturesForPDF\js\tree-line\jstree.min.js" />
+    <Content Include="FeaturesForPDF\js\vendor\jquery-1.12.4.min.js" />
+    <Content Include="FeaturesForPDF\js\vendor\modernizr-2.8.3.min.js" />
+    <Content Include="FeaturesForPDF\js\vendor\modernizr-custom.js" />
+    <Content Include="FeaturesForPDF\js\wizard\jquery.steps.js" />
+    <Content Include="FeaturesForPDF\js\wizard\steps-active.js" />
+    <Content Include="FeaturesForPDF\js\wow.min.js" />
+    <Content Include="FeaturesForPDF\pdf\jquery.media.js" />
+    <Content Include="FeaturesForPDF\pdf\pdf-active.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -497,6 +620,7 @@
     <Content Include="Content\sweetalert\sweet-alert-animations.less" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\mixins.less" />
+    <Content Include="FeaturesForPDF\js\metisMenu\metisMenu.min.js.map" />
     <None Include="IdaDBDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>IdaDBDataSet.Designer.cs</LastGenOutput>
@@ -587,6 +711,9 @@
     <Content Include="Models\IdaModels.edmx.diagram">
       <DependentUpon>IdaModels.edmx</DependentUpon>
     </Content>
+    <Content Include="PDF\Admin%28IDA USER MANNUAL%29.pdf" />
+    <Content Include="PDF\IDA USER MANNUAL%28For Client%29.pdf" />
+    <Content Include="PDF\UserMAnual.pdf" />
     <None Include="ProjectDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ProjectDataSet.Designer.cs</LastGenOutput>
@@ -595,6 +722,7 @@
     <Content Include="ProjectDataSet.xss">
       <DependentUpon>ProjectDataSet.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -732,11 +860,21 @@
     <Content Include="Views\Finance\Profile.cshtml" />
     <Content Include="Views\Finance\Meeting.cshtml" />
     <Content Include="Views\Finance\AddMeeting.cshtml" />
-    <Content Include="Views\Staff\Feedback.cshtml" />
     <Content Include="Views\Employees\getFeedback.cshtml" />
     <Content Include="Views\Employees\deletenow.cshtml" />
     <Content Include="Views\Staff\getFeedback.cshtml" />
     <Content Include="Views\Staff\deletenow.cshtml" />
+    <Content Include="Views\Employees\ClientDetails.cshtml" />
+    <Content Include="Views\Employees\Feedback.cshtml" />
+    <Content Include="Views\Employees\MeetingDetails.cshtml" />
+    <Content Include="Views\Client\getfeedback.cshtml" />
+    <Content Include="Views\Client\deletenow.cshtml" />
+    <Content Include="Views\Client\MeetingDetails.cshtml" />
+    <Content Include="Views\Staff\ViewPDF.cshtml" />
+    <Content Include="Views\Client\Comment.cshtml" />
+    <Content Include="Views\Employees\ViewPDF.cshtml" />
+    <Content Include="Views\Client\ViewPDF.cshtml" />
+    <Content Include="Views\Manager\getComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -764,6 +902,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\EmployeeReport.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

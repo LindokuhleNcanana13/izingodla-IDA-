@@ -49,6 +49,15 @@
     <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="DateRegistered" Type="datetime" />
   </EntityType>
+  <EntityType Name="ClientComment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Employee">
     <Key>
       <PropertyRef Name="EmpId" />
@@ -84,6 +93,7 @@
     <Property Name="StartDate" Type="datetime" />
     <Property Name="Reason" Type="varchar" MaxLength="100" />
     <Property Name="description" Type="varchar" MaxLength="100" />
+    <Property Name="MeetingId" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Leave">
     <Key>
@@ -133,6 +143,7 @@
     <Property Name="NewClientEmail" Type="nvarchar" MaxLength="200" />
     <Property Name="TDate" Type="datetime" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="100" />
+    <Property Name="MeetingNo" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Project">
     <Key>
@@ -303,6 +314,7 @@
     <EntitySet Name="AssignedPM" EntityType="Self.AssignedPM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientComment" EntityType="Self.ClientComment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EmpMeeting" EntityType="Self.EmpMeeting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />

@@ -1,0 +1,63 @@
+﻿@model IDA.Models.Client
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OTP</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <div class="jumbotron" style="margin-bottom: 0px;height: 100vh;">
+        @*<div class="card" style="width: 40rem; margin-top:70px; height:15rem; margin-left:400px;margin-top:5px;">
+                <div class="card-title" style="text-align:center; background-color: #34afed;">
+                    <h4 style="color:whitesmoke">Check your email for OTP</h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("OTP", "Account", FormMethod.Post))
+                    {
+                        <h5 style="text-align:center; color:#013970; ">Use your One-Time Pin to verify your email!</h5>
+                        @Html.TextBox("title", null, new { @placeholder = "Enter your OTP", @class = "form-control valid", @data_val = "true", @data_val_required = " OTP is required" })
+                       <span style="text-align:center; color:red">@ViewBag.Message</span><br /><br />
+                        <input type="submit" value="Submit" class="btn btn-info btn-md" style="width:100%" />
+
+                    }
+                </div>
+                </div>
+            </div>*@
+        <div class="card" style="width: 40rem; margin-top:70px; height:15rem; margin-left:400px;margin-top:5px;">
+            <div class="card-title" style="text-align:center; background-color: #34afed;">
+                <h4 style="color:whitesmoke">You have successfully registered</h4>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("OTP", "Account", FormMethod.Post))
+                {
+                    <h5 style="text-align:center; color:#013970; ">Check your email inbox to Login</h5>
+                  
+                    @*@swal("Email Verified!", "You have successfuly verified your email!", "success");*@
+                }
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+<footer style="        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #2cadd1;
+        height: 50px;
+    ">
+    <p>&copy; @DateTime.Now.Year - Powered by <a href=" http://www.izingcweti.co.za" style="color:orangered">IDAS</a></p>
+</footer>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<IDA.Models.Feedback>
 
 @{
-    ViewBag.Title = "getFeedback";
+    ViewBag.Title = "GetFeedback";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -21,10 +21,10 @@
             <div class="card-body d-sm-flex justify-content-between">
                 <h4 class="mb-2 mb-sm-0 pt-1">
                     
-                    <span style=" color: orangered;">Feedback from Scheduled Meetings</span>
+                    <a style="color:orangered; ">Meeting Feedbacks</a>
                 </h4>
                 <div class="btn-group mr-2">
-                    <a href="/Employees/Meeting" style="border-radius:10px;" class="list-group-item active waves-effect">
+                    <a href="/Employees/AddMeeting" style="border-radius:10px;" class="list-group-item active waves-effect">
                         <i class="fa fa-arrow-left"></i>
                         Back
                     </a>
@@ -40,20 +40,17 @@
                 <thead>
                     <tr class="table-info">
                         <th>
-                            @Html.DisplayNameFor(model => model.Email)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Subject)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.StartDate)
+                            Meeting ID
                         </th>
 
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Reason)
                         </th>
                         <th>
-
+                            Delete Feedback
                         </th>
                     </tr>
                 </thead>
@@ -63,22 +60,19 @@
 
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Email)
+                                <a style="color: blue" data-toggle="tooltip" title="View Meeting Details" href="@Url.Action("MeetingDetails","Employees",new { id = item.MeetingId})"> @Html.DisplayFor(modelItem => item.MeetingId)</a>
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.Subject)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StartDate)
+                                @Html.DisplayFor(modelItem => item.Email)
                             </td>
 
                             <td>
                                 @Html.DisplayFor(modelItem => item.Reason)
                             </td>
                             <td>
+                                <a href="@Url.Action("DeleteNow","Employees", new { id= item.FeedbackId})"><i class="fa fa-trash" style="color:red"></i></a>
 
-                                <a class="btn btn-danger" href="@Url.Action("DeleteNow", "Employees", new { id = item.FeedbackId })">Delete</a>
                             </td>
 
                         </tr>
@@ -88,13 +82,10 @@
                 <tfoot>
                     <tr>
                         <th>
+                            Meeting ID
+                        </th>
+                        <th>
                             Email
-                        </th>
-                        <th>
-                            Subject
-                        </th>
-                        <th>
-                            StartDate
                         </th>
                         <th>
                             Reason
@@ -185,5 +176,10 @@
                 modal.style.display = "none";
             }
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 </main>

@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "AdminProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <title>DashBoard</title>
+</head>
+<body>
+    <main class="pt-5 mx-lg-5">
+        <div class="container-fluid mt-5">
+           
+            <!-- Heading -->
+            <!-- Heading -->
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+
+                <!--Grid column-->
+                <div class="col-md-12 mb-4">
+                    <!--Card-->
+            
+                    <div class="card" style="height: 35rem">
+                        <img class="card-img-top" src="~/Content/images/background-image (2).jpg" alt="Card image cap">
+                 
+                        <div class="card-body">
+                            <h3 style="color:orangered">Personal Information</h3>
+                            @*<a class="btn btn-primary" style="float:right" href="@Url.Action("changePassword","Employees", new { id = Convert.ToInt32(Session["EmpId"])})"><i class="fa fa-pencil mr-2"></i>Change Password</a>*@
+                            <hr />
+                            <label class="label" style="color:#0072fc">Name & Surname</label>
+                            <h4 style=" font-family:Arial, Geneva, Tahoma, sans-serif">@Session["Name"] @Session["Surname"]</h4>
+                            <label class="label" style="color:#0072fc">Email</label>
+                            <h5 style="font-family:Arial, Geneva, Tahoma, sans-serif">@Session["Email"]</h5>
+                            <label class="label" style="color:#0072fc">Address</label>
+                            <h5 style="font-family:Arial, Geneva, Tahoma, sans-serif">@Session["Address"]</h5>
+
+
+                        </div>
+                    </div>
+                            
+                        </div>
+
+
+                    </div>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+           
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+﻿@model IDA.Models.Leave
+
+@{
+    ViewBag.Title = "LeaveApplication";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+
+
+<main class="pt-5 mx-sm-4">
+
+    <br /> <br />
+    <div class="card mb-4 wow fadeIn">
+        <!--Card content-->
+        <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+            <h4 class="mb-2 mb-sm-0 pt-1">
+                <a style="color:orangered; ">Leave Appliation</a>
+
+            </h4>
+
+        </div>
+    </div>
+    <br />
+    <div class="jumbotron">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-3">Applicant Name</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" readonly=true placeholder="@Session["Name"] @Session["Surname"]" />
+                    </div>
+                </div>
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.AppDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                           <input type="date" @Html.EditorFor(model => model.AppDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AppDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.DateApproved, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DateApproved, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DateApproved, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.EmpId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.EmpId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EmpId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Leave Type</label>
+                    <div class="col-md-10">
+                        <select class="form-control" name="@Html.NameFor(model => model.ReasonForApplying)">
+                            <option value="Sick Leave">Sick Leave</option>
+                            <option value="Annual Leave">Annual Leave</option>
+                            <option value="Unpaid Leave">Unpaid Leave</option>
+                            <option value="Family Leave">Family Leave</option>
+                            <option value="Maternity Leave">Maternity Leave</option>
+                            <option value="Partenal Leave">Partenal Leave</option>
+                            <option value="Adoption Leave">Adoption Leave</option>
+                            <option value="Study Leave">Study Leave</option>
+                            <option value="Commision_Partenal">Commision_Parental Leave</option>
+                            <option value="IOD Leave">IOD Leave</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Fromdate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="date" @Html.EditorFor(model => model.Fromdate, new { htmlAttributes = new { @class = "form-control" } })
+                               @Html.ValidationMessageFor(model => model.Fromdate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ToDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="date" @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control" } })
+                               @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NoOfDays, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NoOfDays, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NoOfDays, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Comment, 3, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", required = "true" })
+                        @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-success" />
+                        <a class="btn btn-primary" @Html.ActionLink("Back", "StaffPortal")
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+
+        </div>
+    </div>
+</main>

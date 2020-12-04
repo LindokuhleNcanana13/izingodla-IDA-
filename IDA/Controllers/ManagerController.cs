@@ -205,11 +205,13 @@ namespace IDA.Controllers
         public ActionResult Assigne_Active_projectTask()
         {
             string UserEmail = Session["Email"].ToString();
-            var GetEmployee = db.Employees.Where(c => c.Position != ("CEO") && c.Email != (UserEmail)).ToList();
+            var GetEmployee = db.Employees.Where(c => c.Position != ("CEO") && c.Position != ("logisticManager") && c.Position != ("financeManager") && c.Position != ("admin") && c.Email != (UserEmail)).ToList();
             ViewBag.ChooseEmp = new SelectList(GetEmployee, "EmpId", "Email");
 
-            var GetTask = db.Tasks.Where(c => !db.Assignments.Select(b => b.TaskId).Contains(c.TaskId));
+            var GetTask = db.Tasks.ToList();
             ViewBag.ChooseTask = new SelectList(GetTask, "TaskId", "TaskDescription");
+
+           
 
             var GetSubTask = db.SubTasks.Where(c => !db.Assignments.Select(b => b.SubTaskId).Contains(c.SubTaskId));
             ViewBag.ChoosesubTask = new SelectList(GetSubTask, "SubTaskId", "SubName");
@@ -365,6 +367,34 @@ namespace IDA.Controllers
             }
 
             return View();
+        }
+        public ActionResult getComments(int? id)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection())
+                {
+                    con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=IdaDB;Integrated Security=True";
+
+                    SqlCommand cmd = new SqlCommand("select c.[Name], c.Surname, c.Company, p.ProjectName, cc.[Message] from[IdaDB].[dbo].[Client] c,[IdaDB].[dbo].[ClientComment] cc,[IdaDB].[dbo].[Project] p where c.ClientId = cc.ClientId and cc.ProjectId = p.ProjectId and cc.ProjectId = "+id, con);
+
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+
+
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+                    }
+                    con.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                ModelState.AddModelError("", "Too many records will be returned, please try to minimize your selection and try again." + ex);
+            }
+            return View(dt);
         }
     }
 }

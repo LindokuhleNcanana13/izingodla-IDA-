@@ -296,7 +296,7 @@ namespace IDA.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(file.FileName);
-                    var path1 = Path.Combine(Server.MapPath("~/Files/ProjectRequests"), fileName);
+                    var path1 = Path.Combine(Server.MapPath("~/MD/img"), fileName);
                     file.SaveAs(path1);
                     p.FilePath = path1;
                     p.ProjectName = f["ProjectName"];

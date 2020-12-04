@@ -46,6 +46,7 @@ namespace IDA.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vehicle> Vehicles { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual DbSet<ClientComment> ClientComments { get; set; }
     
         public virtual int AddNewClientRecord(string name, string surname, string email, string password, string company, string phoneNo, Nullable<int> clientId, Nullable<System.DateTime> dateRegistered)
         {

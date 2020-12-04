@@ -1,0 +1,59 @@
+﻿@model IDA.Models.Project
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+}
+<html>
+<head><title></title>
+    
+    </head>
+<body>
+    <main class="pt-5 mx-sm-5">
+        <div id="page-content-wrapper">
+            <br /> <br />
+            <div class="card mb-4 wow fadeIn">
+                <!--Card content-->
+                <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                    <h4 class="mb-2 mb-sm-0 pt-1">
+                        <a style="color:orangered; ">Client Dashboard</a>
+
+                    </h4>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Want to work with us?</h5>
+                            <hr />
+                            <img src="~/Content/images/folder-documents.png" />
+                            <a href="/Client/newProject"  class="btn btn-primary" style="border-radius:5px;" >Request Project Assistance</a>
+                        @*@Session["ClientId"]*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Check Existing Projects</h5>
+                            <hr />
+                            <img src="~/Content/images/folder-project.png" />
+                            <a href="/Client/AllProjects" class="btn btn-primary" style="border-radius:5px;">View Projects</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <h1></h1>
+        </div>
+        
+        
+    </main>
+
+</body>
+</html>
+    
+

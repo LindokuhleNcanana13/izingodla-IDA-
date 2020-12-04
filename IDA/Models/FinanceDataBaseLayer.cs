@@ -103,7 +103,7 @@ namespace IDA.Models
             {
                 list.Add(new LogisticBooking
                 {
-                   // salary = Convert.ToInt32(dr["salary"]),
+                    Salary = Convert.ToInt32(dr["Salary"]),
                     BookingDate = Convert.ToDateTime(dr["BookingDate"])
                 });
             }

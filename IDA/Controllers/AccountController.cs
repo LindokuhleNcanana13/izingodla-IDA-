@@ -325,14 +325,11 @@ namespace IDA.Controllers
         }
         public ActionResult Logout()
         {
-            //Session.Clear();
-            //Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
-            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            //Response.Cache.SetNoStore();
-
-            //Response.ClearHeaders();
-            //Response.AddHeader("Cache-Control","no-cache, no-store, max-age=0, must-revalidate");
-            //Response.AddHeader("Pragma", "no-cache");
+            // Code disables caching by browser. Hence the back browser button
+            // grayed out and could not causes the Page_Load event to fire 
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
             Session.Abandon();
             Session.Clear();
             return RedirectToAction("Login","Account");

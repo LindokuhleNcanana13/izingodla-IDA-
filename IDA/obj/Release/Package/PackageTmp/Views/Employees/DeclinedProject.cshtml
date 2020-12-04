@@ -1,0 +1,114 @@
+﻿@model IDA.Models.Project
+
+@{
+    ViewBag.Title = "DeclinedProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<main class="pt-5 mx-sm-4">
+    <link href="~/Content/css/modalStyle.css" rel="stylesheet" />
+    <div id="page-content-wrapper">
+        <br /> <br />
+        <div class="card mb-4 wow fadeIn">
+            <!--Card content-->
+            <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                <h4 class="mb-2 mb-sm-0 pt-1">
+                    <a style="color:orangered; ">Reject Project</a>
+
+                </h4>
+                <a href="@Url.Action("Index", "Projects", new { id = Session["ProjectId"]})">Back</a>
+            </div>
+        </div>
+
+
+        <br />
+
+
+        <div class="jumbotron">
+            <center>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Send Feedback Message</h4>
+                        @if (ViewBag.ErrorMessage != null && ViewBag.ErrorMessage == "Cannot send feedback message")
+                        {
+                            <div class="alert alert-danger">
+                                <a class="close" data-dismiss="alert">×</a>
+                                @ViewBag.ErrorMessage
+                            </div>
+                        }
+                        @if (ViewBag.Message != null && ViewBag.Message == "Report Submitted")
+
+                        {
+                            <div class="alert alert-success">
+                                <a class="close" data-dismiss="alert">×</a>
+                                @ViewBag.Message
+                            </div>
+                        }
+                        <hr />
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Feedback, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+
+                                @Html.TextAreaFor(model => model.Feedback, 3, 93, new { htmlAttributes = new { @class = "form-control", style = "width: 500px;" } })
+                                @Html.ValidationMessageFor(model => model.Feedback, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+
+                                <button type="submit" class="btn btn-custon-four btn-primary btn-lg" data-toggle="tooltip" title="Submit"><span class="edu-icon edu-home-admin"></span>Save</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </center>
+            <hr />
+        </div>
+    </div>
+
+
+
+
+
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+        <form class="modal-content" action="/action_page.php">
+            <div class="container">
+                <h1>Delete Account</h1>
+                <p>Are you sure you want to delete your account?</p>
+
+                <div class="clearfix">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</main>
+
+
+

@@ -1,0 +1,167 @@
+﻿@{
+    ViewBag.Title = "YearlyExpenses";
+    Layout = "~/Views/Shared/FinanceManagerLayout.cshtml";
+}
+<head>
+    <!-- DataTables CSS -->
+    <link href="css/addons/datatables2.min.css" rel="stylesheet">
+    <link href="~/MD/css/addons/datatables.min.css" rel="stylesheet" />
+    <!-- DataTables JS -->
+    <script src="js/addons/datatables2.min.js" type="text/javascript"></script>
+
+    <script src="~/MD/js/addons/datatables2.min.js"></script>
+</head>
+<html>
+<body>
+    <main class="pt-5 mx-lg-5">
+        <div class="container-fluid mt-5">
+            <div class="container-fluid mt-5">
+                <div class="card mb-4 wow fadein">
+                    <div class="card-body d-sm-flex justify-content-between">
+
+                        <h4 class="mb-2 mb-sm-0 pt-1">
+
+                            <span style=" color: orangered;">Yearly Expenditure</span>
+                        </h4>
+
+                        <form class="d-flex justify-content-center">
+                        </form>
+
+                    </div>
+
+                </div>
+                <!-- Heading -->
+                <!-- Heading -->
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+                    <!--Grid column-->
+                    <div class="col-md-12 mb-4">
+                        <!--Card-->
+
+                        <div class="card-body">
+
+                            <div class="row wow fadeIn">
+                                <!--Grid column-->
+                                <div class="col-md-12 mb-4">
+                                    <!--Card-->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="tile">
+
+                                                <h5>Rands</h5>
+                                                <div>
+                                                    <div id="char_Weekly" style="width:100%; height:300px"></div>
+                                                    <h6>
+                                                    </h6>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <!--/.Card-->
+
+                                </div>
+                                <!--Grid column-->
+                            </div>
+                        </div>
+
+
+
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column-->
+                </div>
+            </div>
+        </div>
+        <link href="css/addons/datatables-select2.min.css" rel="stylesheet">
+        <link href="~/MD/css/addons/datatables-select2.min.css" rel="stylesheet" />
+        <!-- DataTables Select JS -->
+        <script src="js/addons/datatables-select2.min.js" type="text/javascript"></script>
+        <script src="~/MD/js/addons/datatables-select2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dt-filter-select').dataTable({
+
+                    initComplete: function () {
+                        this.api().columns().every(function () {
+                            var column = this;
+                            var select = $('<select  class="browser-default custom-select form-control-sm"><option value="" selected>Search</option></select>')
+                                .appendTo($(column.footer()).empty())
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        });
+                    }
+                });
+            });
+            // Get the modal
+            var modal = document.getElementById('id01');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+        </script>
+    </main>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawchart);
+    function drawchart() {
+        var data = new google.visualization.DataTable();
+           data.addColumn('string','BookingDate');
+                                data.addColumn('number', 'Salary');
+
+                                $.get("/Finance/MonthlyExpenses", {}, function (chartsdata) {
+
+                                    $.each(chartsdata, function (i, v) {
+                                        data.addRow([v.BookingDate, v.Salary]);
+            });
+            var options = {
+                //type: 'pie',
+                title: 'Views',
+                hAxis: { titleTextStyle: { color: '#333' } },
+                chartArea: {
+                    left: 40,
+                    top: 10,
+                    bottom: 30,
+                    width: 930,
+                    height: 250,
+                    backgroundColor: '#fcfcfc'
+                },
+                VAxis: {
+                    minValue: 4,
+                    viewWindow: { min: 0 },
+                    format: '0',
+                },
+                color: ['#c404fs', 'blue', '#3fc26b']
+            };
+            var chart = new google.visualization.AreaChart(document.getElementById('char_Weekly'));
+            chart.draw(data, options);
+        })
+    }
+</script>
+
+
+

@@ -120,6 +120,7 @@
     <EntitySetMapping Name="Meetings">
       <EntityTypeMapping TypeName="IdaDBModel.Meeting">
         <MappingFragment StoreEntitySet="Meeting">
+          <ScalarProperty Name="MeetingNo" ColumnName="MeetingNo" />
           <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
           <ScalarProperty Name="Subject" ColumnName="Subject" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -318,12 +319,23 @@
     <EntitySetMapping Name="Feedbacks">
       <EntityTypeMapping TypeName="IdaDBModel.Feedback">
         <MappingFragment StoreEntitySet="Feedback">
+          <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="Reason" ColumnName="Reason" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="Subject" ColumnName="Subject" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientComments">
+      <EntityTypeMapping TypeName="IdaDBModel.ClientComment">
+        <MappingFragment StoreEntitySet="ClientComment">
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

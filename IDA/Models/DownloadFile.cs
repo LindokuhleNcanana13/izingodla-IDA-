@@ -12,7 +12,7 @@ namespace IDA.Models
         public List<Project> GetFiles()
         {
             List<Project> lstFiles = new List<Project>();
-            DirectoryInfo dirInfo = new DirectoryInfo(HostingEnvironment.MapPath("~/Files/ProjectRequests"));
+            DirectoryInfo dirInfo = new DirectoryInfo(HostingEnvironment.MapPath("~/MD/img"));
 
             int i = 0;
             String path = "";

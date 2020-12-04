@@ -576,5 +576,11 @@ namespace IDA.Controllers
             db.SaveChanges();
             return RedirectToAction("getfeedback");
         }
+         
+        public ActionResult ViewPDF()
+        {
+            return View();
+        }
     }
 }
+

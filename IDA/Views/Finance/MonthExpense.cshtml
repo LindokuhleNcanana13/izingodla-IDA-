@@ -44,12 +44,12 @@
                                 var data = new google.visualization.DataTable();
 
                                 data.addColumn('string','BookingDate');
-                                data.addColumn('number', 'salary');
+                                data.addColumn('number', 'Salary');
 
-                                $.get("/FinanceManager/MonthlyExpenses", {}, function (chartsdata) {
+                                $.get("/Finance/MonthlyExpenses", {}, function (chartsdata) {
 
                                     $.each(chartsdata, function (i, v) {
-                                        data.addRow([v.BookingDate, v.salary]);
+                                        data.addRow([v.BookingDate, v.Salary]);
                                     });
 
                                     var options = {

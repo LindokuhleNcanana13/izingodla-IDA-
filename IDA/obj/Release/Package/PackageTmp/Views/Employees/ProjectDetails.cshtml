@@ -1,0 +1,206 @@
+﻿@model IDA.Models.Project
+
+@{
+    ViewBag.Title = "ProjectDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <main class="pt-5 mx-sm-4">
+        <link href="~/Content/css/modalStyle.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <div id="page-content-wrapper">
+            <br /> <br />
+            <div class="card mb-4 wow fadeIn">
+                <!--Card content-->
+                <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                    <h4 class="mb-2 mb-sm-0 pt-1">
+                        <a style="color:orangered; ">Manage New Project Requests</a>
+
+                    </h4>
+                    <a href="/Projects/Index" style="font-style:italic">Back</a>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-7">
+
+
+                    <div class="card" style="margin-bottom:100px">
+                        <div class="card-title" style="background-color:#f2f1ed">
+                            <h5 style="text-align:center; margin-top:10px">Project Information</h5><hr />
+                        </div>
+                        
+                        <div class="card-body">
+                            <a class="btn btn-info" style="float:right; margin-top:-30px; margin-right:-20px" href="@Url.Action("ClientDetails","Employees", new { id =  Session["ProjId"]})"><i class="fa fa-file mr-2"></i>Client Details</a>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.ProjectId)
+                                @if (ViewBag.Message != null && ViewBag.Message == "Project has been approved")
+                                {
+                                    <div class="col-md-10">
+                                        <div class="alert alert-success">
+                                            <a class="close" data-dismiss="alert">&times;</a>
+                                            @ViewBag.Message
+                                        </div>
+                                    </div>
+                                }
+                                @if (ViewBag.Message != null && ViewBag.Message == "Submitted")
+                                {
+                                    <div class="col-md-10">
+                                        <div class="alert alert-success">
+                                            <a class="close" data-dismiss="alert">&times;</a>
+                                            @ViewBag.Message
+                                        </div>
+                                    </div>
+                                }
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-md-10" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control", @readonly = true, Styles = "cursor: not-allowed;" } })
+                                        @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                @Html.HiddenFor(model => model.Date_Started)
+
+                                @Html.HiddenFor(model => model.Date_Concluded)
+                                @Html.HiddenFor(model => model.ClientId)
+                                @Html.HiddenFor(model => model.EmpId)
+                                @Html.HiddenFor(model => model.BriefingDate)
+                                @Html.HiddenFor(model => model.SubmitionDate)
+                                @Html.HiddenFor(model => model.AdvertDate)
+
+                                @Html.HiddenFor(model => model.FilePath)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-10" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Description, 3, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", required = "true", @readonly = true })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DateRequested, htmlAttributes: new { @class = "control-label col-md-10" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.DateRequested, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                        @Html.ValidationMessageFor(model => model.DateRequested, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                @Html.HiddenFor(model => model.ProjectType)
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <select class="form-control" id="dropdown" name="@Html.NameFor(model => model.Status)" onchange="showTextArea()">
+                                            <option value="0">Choose</option>
+                                            <option value="Active">Approve</option>
+                                            <option value="Declined">Decline</option>
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                @*<div style="display:none;" id="mobileno_textbox">
+            <div class="form-group">
+
+                <label class = "control-label col-md-10">Reason for Decline</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Feedback, 3, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", required = "true"})
+                    @Html.ValidationMessageFor(model => model.Feedback, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
+                            </div>
+
+                                <br />
+
+                                <div class="card-footer">
+
+                                    <p>
+                                        <input type="submit" class="btn btn-success" value="submit" />
+                                        @*<a class="btn btn-warning" data-toggle="modal" data-target="#modal">Decline</a>*@
+                                        <a class="btn btn-primary" href="/Projects/Index">Back</a>
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-title" style="background-color:#f2f1ed">
+                            <h5 style="text-align:center;margin-top:10px">Attached Document</h5> <hr />
+                        </div>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                           
+
+                            <div class="card-body">
+                                <p style="text-align:center"> @Session["FileName"]</p>
+
+                            </div>
+
+                            <div class="card-footer">
+                              
+                                <a href="@Url.Action("Download", "Employees", new { id = Convert.ToInt32(Session["ProjId"]) })" class="btn btn-primary" style="width:100%"> <i class="fa fa-download m-1"></i>Download File</a>
+                               
+                            </div>
+
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script>
+        function onclick() {
+    location.href = '@Url.Action("AddProject", "Employees")';
+    }
+        </script>
+        <div id="modal" class="modal fade" role='dialog' data-backdrop="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">Assign Task </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+                        <label class="label">Reason for decline</label>
+                        <input type="text" class="text-body" />
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" data-backdrop="false" class="btn btn-success" onclick="GetSurname()" data-dismiss="modal">Submit</button>
+                        <button type="button" data-backdrop="false" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            function showTextArea() {
+                var select_status = $('#dropdown').val();
+                if (select_status == "Declined") {
+                    $('#mobileno_textbox').show();
+                }
+                else {
+                    $('#mobileno_textbox').hide();
+                }
+            }
+        </script>
+    </main>
