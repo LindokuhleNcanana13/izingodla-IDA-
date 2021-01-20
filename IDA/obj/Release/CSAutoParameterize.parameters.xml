@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IdaDBConnectionString-Web.config Connection String" description="IdaDBConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=IdaDB;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\User1\\Desktop\\IDA\\IDA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='IdaDBConnectionString']/@connectionString" />
+  </parameter>
+  <parameter name="LoginEntity-Web.config Connection String" description="LoginEntity Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Login.csdl|res://*/Models.Login.ssdl|res://*/Models.Login.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(localdb)\MSSQLLocalDB;initial catalog=IdaDB;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\User1\\Desktop\\IDA\\IDA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='LoginEntity']/@connectionString" />
+  </parameter>
+  <parameter name="IdaDBEntities-Web.config Connection String" description="IdaDBEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.IdaModels.csdl|res://*/Models.IdaModels.ssdl|res://*/Models.IdaModels.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(localdb)\MSSQLLocalDB;initial catalog=IdaDB;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\User1\\Desktop\\IDA\\IDA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='IdaDBEntities']/@connectionString" />
+  </parameter>
+</parameters>

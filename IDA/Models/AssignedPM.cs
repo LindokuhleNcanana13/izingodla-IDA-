@@ -20,7 +20,7 @@ namespace IDA.Models
         public Nullable<System.DateTime> DateAssigned { get; set; }
         public string EmpPosition { get; set; }
     
-        public virtual Employee Employee { get; set; }
         public virtual Project Project { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

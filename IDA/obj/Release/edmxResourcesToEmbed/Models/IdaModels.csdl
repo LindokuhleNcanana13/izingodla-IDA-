@@ -320,6 +320,7 @@
       <Parameter Name="EmpId" Mode="In" Type="Int32" />
     </FunctionImport>
     <EntitySet Name="Feedbacks" EntityType="IdaDBModel.Feedback" />
+    <EntitySet Name="ClientComments" EntityType="IdaDBModel.ClientComment" />
   </EntityContainer>
   <ComplexType Name="getClient_Result">
     <Property Type="Int32" Name="ClientId" Nullable="false" />
@@ -385,5 +386,14 @@
     <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="MeetingId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ClientComment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="ProjectId" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

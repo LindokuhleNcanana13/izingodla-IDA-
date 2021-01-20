@@ -258,10 +258,19 @@
     <Compile Include="Models\ClientComment.cs">
       <DependentUpon>IdaModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Creditor.cs">
+      <DependentUpon>IdaModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Debtor.cs">
+      <DependentUpon>IdaModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Employee.cs">
       <DependentUpon>IdaModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmpMeeting.cs">
+      <DependentUpon>IdaModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Expenditure.cs">
       <DependentUpon>IdaModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Feedback.cs">
@@ -302,6 +311,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IdaModels.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\InepVariance.cs">
+      <DependentUpon>IdaModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InvoiceTbl.cs">
+      <DependentUpon>IdaModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Leave.cs">
       <DependentUpon>IdaModels.tt</DependentUpon>
     </Compile>
@@ -320,6 +335,9 @@
       <DependentUpon>IdaModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Report.cs">
+      <DependentUpon>IdaModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Salary.cs">
       <DependentUpon>IdaModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubTask.cs">
@@ -723,6 +741,8 @@
       <DependentUpon>ProjectDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -875,6 +895,16 @@
     <Content Include="Views\Employees\ViewPDF.cshtml" />
     <Content Include="Views\Client\ViewPDF.cshtml" />
     <Content Include="Views\Manager\getComments.cshtml" />
+    <Content Include="Views\Finance\reports.cshtml" />
+    <Content Include="Views\Finance\debtorsandcreditors.cshtml" />
+    <Content Include="Views\Finance\newCreditor.cshtml" />
+    <Content Include="Views\Finance\debtors.cshtml" />
+    <Content Include="Views\Finance\newDebtor.cshtml" />
+    <Content Include="Views\Finance\ViewInvoice.cshtml" />
+    <Content Include="Views\Finance\generateReports.cshtml" />
+    <Content Include="Views\Finance\inepPartReport.cshtml" />
+    <Content Include="Views\Finance\ViewInepReport.cshtml" />
+    <Content Include="Views\Finance\ViewInfoReprt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

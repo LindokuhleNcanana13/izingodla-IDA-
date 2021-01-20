@@ -31,22 +31,28 @@ namespace IDA.Models
         public virtual DbSet<AssignedPM> AssignedPMs { get; set; }
         public virtual DbSet<Assignment> Assignments { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmpMeeting> EmpMeetings { get; set; }
         public virtual DbSet<Leave> Leaves { get; set; }
         public virtual DbSet<LogisticBooking> LogisticBookings { get; set; }
         public virtual DbSet<Meeting> Meetings { get; set; }
-        public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectReport> ProjectReports { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<SubTask> SubTasks { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<Tbl_UserActivation> Tbl_UserActivation { get; set; }
-        public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vehicle> Vehicles { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<ClientComment> ClientComments { get; set; }
+        public virtual DbSet<Expenditure> Expenditures { get; set; }
+        public virtual DbSet<Salary> Salaries { get; set; }
+        public virtual DbSet<InvoiceTbl> InvoiceTbls { get; set; }
+        public virtual DbSet<Creditor> Creditors { get; set; }
+        public virtual DbSet<Debtor> Debtors { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<InepVariance> InepVariances { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
     
         public virtual int AddNewClientRecord(string name, string surname, string email, string password, string company, string phoneNo, Nullable<int> clientId, Nullable<System.DateTime> dateRegistered)
         {

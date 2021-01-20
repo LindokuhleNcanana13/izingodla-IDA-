@@ -17,5 +17,6 @@ namespace IDA.Models
         public int SubTaskId { get; set; }
         public Nullable<int> TaskId { get; set; }
         public string SubName { get; set; }
+        public Nullable<int> NoOfDays { get; set; }
     }
 }

@@ -41,12 +41,13 @@
                         </a>
                     </div>
                 </div>
-                
+
             </div>
         </div>
         <br />
     </div>
     <div class="jumbotron">
+       
 
         <a href="@Url.Action("insertData","Manager", new {id = Session["ProjectId"]})" style="border-radius:5px; " class="btn btn-primary"><i class="fa fa-plus mr-1" style="color:white;"></i>Fill Time Sheet</a>
         <a href="@Url.Action("Timesheets","Manager", new {id = Session["ProjectId"]})" style="border-radius:5px; " class="btn btn-primary"><i class="fa fa-file mr-1" style="color:white;"></i>View Time Sheets</a>
@@ -62,10 +63,10 @@
             </thead>
             <tbody>
                 @foreach (DataRow row in Model.Rows)
-                 {
-                        
-                                if (row["Stage"].Equals(1))
-                                {
+                {
+
+                    if (row["Stage"].Equals(1))
+                    {
                         <tr>
                             <td>
                                 @row["SubName"]
@@ -226,6 +227,11 @@
                 modal.style.display = "none";
             }
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 </main>
 

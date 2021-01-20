@@ -504,13 +504,20 @@ namespace IDA.Controllers
                     transaction.LogisticBookId = id;
                     transaction.DateRecorded = DateTime.Now;
                     transaction.item = f["item"];
-                    transaction.Price = f["Price"];
-                   
-                    
-                        db.Transactions.Add(transaction);
-                        db.SaveChanges();
-                        ViewBag.Message = "Submitted successfully";
-                  
+                    transaction.Price = Convert.ToDouble(f["Price"]);
+
+
+                if (fileName.Contains("pdf") || fileName.Contains("docx") || fileName.Contains("txt"))
+                {
+
+                    db.Transactions.Add(transaction);
+                    db.SaveChanges();
+                    ViewBag.Message = "Submitted successfully";
+                }
+                else
+                {
+                    ViewBag.error = "Only pdf, word and text files allowed!!";
+                }
                 }
             
 

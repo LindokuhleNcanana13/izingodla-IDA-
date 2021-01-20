@@ -49,6 +49,15 @@
     <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="DateRegistered" Type="datetime" />
   </EntityType>
+  <EntityType Name="ClientComment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Employee">
     <Key>
       <PropertyRef Name="EmpId" />
@@ -305,6 +314,7 @@
     <EntitySet Name="AssignedPM" EntityType="Self.AssignedPM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientComment" EntityType="Self.ClientComment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EmpMeeting" EntityType="Self.EmpMeeting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />

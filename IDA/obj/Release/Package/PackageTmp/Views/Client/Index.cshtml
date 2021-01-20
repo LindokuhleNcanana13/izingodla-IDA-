@@ -19,6 +19,8 @@
 
                     </h4>
 
+                    <a href="/Client/ViewPDF" data-toggle="tooltip" title="Load user manual for guidance" style="float:right;" class="btn btn-info"><i class="fa fa-file mr-1" style="color:white;"></i>User Manual</a>
+
                 </div>
             </div>
 
@@ -29,8 +31,8 @@
                             <h5 class="card-title">Want to work with us?</h5>
                             <hr />
                             <img src="~/Content/images/folder-documents.png" />
-                            <a href="/Client/newProject"  class="btn btn-primary" style="border-radius:5px;" >Request Project Assistance</a>
-                        @*@Session["ClientId"]*@
+                            <a href="/Client/newProject" class="btn btn-primary" style="border-radius:5px;">Request Project Assistance</a>
+                            @*@Session["ClientId"]*@
                         </div>
                     </div>
                 </div>
@@ -49,10 +51,14 @@
 
             <h1></h1>
         </div>
-        
-        
-    </main>
 
+
+    </main>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 </body>
 </html>
     

@@ -59,9 +59,25 @@ namespace IDA.Controllers
                         p.Description = f["Description"];
                         p.Status = "Pending";
                         p.ProjectType = "Client Request";
-                            p.AdvertDate = Convert.ToDateTime(f["AdvertDate"]);
-                            p.BriefingDate = Convert.ToDateTime(f["BriefingDate"]);
-                            p.SubmitionDate = Convert.ToDateTime(f["SubmitionDate"]);
+                        p.AdvertDate = Convert.ToDateTime(f["AdvertDate"]);
+                        p.BriefingDate = Convert.ToDateTime(f["BriefingDate"]);
+                        p.SubmitionDate = Convert.ToDateTime(f["SubmitionDate"]);
+                        String name = "";
+                        DateTime dt = DateTime.Now;
+                        name = p.ProjectName.Substring(0, 4);
+                        p.ProjectNumber = name + dt.Month + "/" + dt.Year;
+                        p.ContractNumber = name + dt.Month + "/" + dt.Year;
+                        p.ContractorType = f["ContractorType"];
+                        p.SourceOfFunding = f["SourceOfFunding"];
+                        p.ProjectT = f["ProjectT"];
+
+                        p.Municipality = f["Municipality"];
+                        p.Province = f["Province"];
+                        p.MunicipalityNo = f["MunicipalityNo"];
+                        p.MunicipalityTelNo = f["MunicipalityTelNo"];
+                        p.MunicipalityFaxNo = f["MunicipalityFaxNo"];
+                        p.ContactPerson = f["ContactPerson"];
+
                     try
                     {
 

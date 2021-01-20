@@ -3,8 +3,8 @@
     ViewBag.Title = "MonthExpense";
     Layout = "~/Views/Shared/FinanceManagerLayout.cshtml";
 }
-<head>
-</head>
+
+<br />
 <html>
 <body>
     <main class="pt-5 mx-lg-5">
@@ -32,87 +32,88 @@
                     <div class="col-md-12 mb-4">
                         <!--Card-->
 
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                        <script>
-                            google.charts.load('current', {packages: ['corechart', 'bar']});
-                            google.charts.setOnLoadCallback(drawchart);
-                            function drawchart() {
+                        <div class="jumbotron" style="height:25rem">
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                            <script>
+                                google.charts.load('current', { packages: ['corechart', 'bar'] });
+                                google.charts.setOnLoadCallback(drawchart);
+                                function drawchart() {
 
-                                //var data = google.visualization.arrayToDataTable([
-                                //    ['Year', 'Sales', 'Expenses', 'Profit'],
-                                var data = new google.visualization.DataTable();
+                                    //var data = google.visualization.arrayToDataTable([
+                                    //    ['Year', 'Sales', 'Expenses', 'Profit'],
+                                    var data = new google.visualization.DataTable();
 
-                                data.addColumn('string','BookingDate');
-                                data.addColumn('number', 'Salary');
+                                    data.addColumn('string', 'BookingDate');
+                                    data.addColumn('number', 'Salary');
 
-                                $.get("/Finance/MonthlyExpenses", {}, function (chartsdata) {
+                                    $.get("/Finance/MonthlyExpenses", {}, function (chartsdata) {
 
-                                    $.each(chartsdata, function (i, v) {
-                                        data.addRow([v.BookingDate, v.Salary]);
-                                    });
+                                        $.each(chartsdata, function (i, v) {
+                                            data.addRow([v.BookingDate, v.Salary]);
+                                        });
 
-                                    var options = {
-                                        title: "Monthly Expenditure",
-                                        width: 'auto',
-                                        height: 'auto',
-                                        bar: { groupWidth: "75%" },
-                                        legend: { position: "none" },
-                                        title: 'Time of Day',
-                                       format: 'h:mm a',
-                                    };
+                                        var options = {
+                                            title: "Monthly Expenditure",
+                                            width: 'auto',
+                                            height: 'auto',
+                                            bar: { groupWidth: "75%" },
+                                            legend: { position: "none" },
+                                            title: 'Time of Day',
+                                            format: 'h:mm a',
+                                        };
 
-                                    var materialOptions = {
-                                        width: 900,
-                                        chart: {
-                                            title: 'Nearby galaxies',
-                                            subtitle: 'distance on the left, brightness on the right'
-                                        },
-                                        series: {
-                                            0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
-                                            1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
-                                        },
-                                        axes: {
-                                            y: {
-                                                distance: { label: 'parsecs' }, // Left y-axis.
-                                                brightness: { side: 'right', label: 'apparent magnitude' } // Right y-axis.
+                                        var materialOptions = {
+                                            width: 900,
+                                            chart: {
+                                                title: 'Nearby galaxies',
+                                                subtitle: 'distance on the left, brightness on the right'
+                                            },
+                                            series: {
+                                                0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
+                                                1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
+                                            },
+                                            axes: {
+                                                y: {
+                                                    distance: { label: 'parsecs' }, // Left y-axis.
+                                                    brightness: { side: 'right', label: 'apparent magnitude' } // Right y-axis.
+                                                }
                                             }
-                                        }
-                                    };
+                                        };
 
 
-                                    var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
-                                    chart.draw(data, options);
-                                })
-                            }
-                        </script>
+                                        var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+                                        chart.draw(data, options);
+                                    })
+                                }
+                            </script>
 
 
 
 
-                        <div class="tile">
-                            <h3 class="tile-title"></h3>
+                            <div class="tile">
+                                <h3 class="tile-title"></h3>
 
-                            <div>
-                                <div id="columnchart_values" style="width:100%; height:300px"></div>
-                                <h6>
-                                </h6>
+                                <div>
+                                    <div id="columnchart_values" style="width:100%; height:300px"></div>
+                                    <h6>
+                                    </h6>
+
+                                </div>
 
                             </div>
 
+
+
+
+                            <!--/.Card-->
+
                         </div>
-
-
-
-
-                        <!--/.Card-->
-
+                        <!--Grid column-->
                     </div>
-                    <!--Grid column-->
                 </div>
             </div>
-        </div>
-
+        </div>      
         <script>
             $(document).ready(function () {
                 $('#dt-filter-select').dataTable({

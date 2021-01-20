@@ -329,5 +329,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ClientComments">
+      <EntityTypeMapping TypeName="IdaDBModel.ClientComment">
+        <MappingFragment StoreEntitySet="ClientComment">
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

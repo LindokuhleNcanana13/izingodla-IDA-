@@ -19,7 +19,7 @@ namespace IDA.Models
         public Nullable<int> LogisticBookId { get; set; }
         public Nullable<System.DateTime> DateRecorded { get; set; }
         public string item { get; set; }
-        public string Price { get; set; }
+        public Nullable<double> Price { get; set; }
         public string SlipPath { get; set; }
     }
 }

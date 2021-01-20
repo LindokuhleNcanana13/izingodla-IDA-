@@ -81,9 +81,8 @@
                                         <div class="form-group">
 
                                             <input type="hidden" id="valueGet" @*readonly="readonly"*@ name="valueG" />
-                                            @Html.DropDownList("TaskId", ViewBag.ChooseTask as SelectList, "---- CHOOSE TASK ----", new { @onChange = "selectedText(this)", @class = "form-control", @required = true })
-
-                                        </div>
+                                            @Html.DropDownList("TaskId", ViewBag.ChooseTask as SelectList, "---- CHOOSE TASK ----", new { @onChange = "selectedText(this)", @class = "form-control", @required = true })  
+                                       </div>
 
 
 

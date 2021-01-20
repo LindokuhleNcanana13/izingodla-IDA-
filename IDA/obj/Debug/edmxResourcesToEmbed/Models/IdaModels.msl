@@ -54,23 +54,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="IdaDBModel.Employee">
-        <MappingFragment StoreEntitySet="Employee">
-          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
-          <ScalarProperty Name="Salary" ColumnName="Salary" />
-          <ScalarProperty Name="Position" ColumnName="Position" />
-          <ScalarProperty Name="HireDate" ColumnName="HireDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="EmpMeetings">
       <EntityTypeMapping TypeName="IdaDBModel.EmpMeeting">
         <MappingFragment StoreEntitySet="EmpMeeting">
@@ -134,27 +117,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Projects">
-      <EntityTypeMapping TypeName="IdaDBModel.Project">
-        <MappingFragment StoreEntitySet="Project">
-          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-          <ScalarProperty Name="Date_Started" ColumnName="Date_Started" />
-          <ScalarProperty Name="Date_Concluded" ColumnName="Date_Concluded" />
-          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
-          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="DateRequested" ColumnName="DateRequested" />
-          <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Feedback" ColumnName="Feedback" />
-          <ScalarProperty Name="AdvertDate" ColumnName="AdvertDate" />
-          <ScalarProperty Name="BriefingDate" ColumnName="BriefingDate" />
-          <ScalarProperty Name="SubmitionDate" ColumnName="SubmitionDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ProjectReports">
       <EntityTypeMapping TypeName="IdaDBModel.ProjectReport">
         <MappingFragment StoreEntitySet="ProjectReport">
@@ -180,6 +142,7 @@
     <EntitySetMapping Name="SubTasks">
       <EntityTypeMapping TypeName="IdaDBModel.SubTask">
         <MappingFragment StoreEntitySet="SubTask">
+          <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
           <ScalarProperty Name="SubTaskId" ColumnName="SubTaskId" />
           <ScalarProperty Name="TaskId" ColumnName="TaskId" />
           <ScalarProperty Name="SubName" ColumnName="SubName" />
@@ -199,19 +162,6 @@
         <MappingFragment StoreEntitySet="Tbl_UserActivation">
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
           <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Transactions">
-      <EntityTypeMapping TypeName="IdaDBModel.Transaction">
-        <MappingFragment StoreEntitySet="Transaction">
-          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
-          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-          <ScalarProperty Name="LogisticBookId" ColumnName="LogisticBookId" />
-          <ScalarProperty Name="DateRecorded" ColumnName="DateRecorded" />
-          <ScalarProperty Name="item" ColumnName="item" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="SlipPath" ColumnName="SlipPath" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -336,6 +286,157 @@
           <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
           <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Expenditures">
+      <EntityTypeMapping TypeName="IdaDBModel.Expenditure">
+        <MappingFragment StoreEntitySet="Expenditure">
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salaries">
+      <EntityTypeMapping TypeName="IdaDBModel.Salary">
+        <MappingFragment StoreEntitySet="Salary">
+          <ScalarProperty Name="OverTimeHours" ColumnName="OverTimeHours" />
+          <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+          <ScalarProperty Name="HourRate" ColumnName="HourRate" />
+          <ScalarProperty Name="HoursWorked" ColumnName="HoursWorked" />
+          <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+          <ScalarProperty Name="DatePaid" ColumnName="DatePaid" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="SalaryId" ColumnName="SalaryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceTbls">
+      <EntityTypeMapping TypeName="IdaDBModel.InvoiceTbl">
+        <MappingFragment StoreEntitySet="InvoiceTbl">
+          <ScalarProperty Name="SubTaskId" ColumnName="SubTaskId" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="NoteMessage" ColumnName="NoteMessage" />
+          <ScalarProperty Name="StatusIvo" ColumnName="StatusIvo" />
+          <ScalarProperty Name="Invoicedate" ColumnName="Invoicedate" />
+          <ScalarProperty Name="DateDue" ColumnName="DateDue" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Creditors">
+      <EntityTypeMapping TypeName="IdaDBModel.Creditor">
+        <MappingFragment StoreEntitySet="Creditor">
+          <ScalarProperty Name="CreditDescription" ColumnName="CreditDescription" />
+          <ScalarProperty Name="DateRecorded" ColumnName="DateRecorded" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CreditorName" ColumnName="CreditorName" />
+          <ScalarProperty Name="CreditorId" ColumnName="CreditorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Debtors">
+      <EntityTypeMapping TypeName="IdaDBModel.Debtor">
+        <MappingFragment StoreEntitySet="Debtor">
+          <ScalarProperty Name="DebtDescription" ColumnName="DebtDescription" />
+          <ScalarProperty Name="DateRecorded" ColumnName="DateRecorded" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="DebtorName" ColumnName="DebtorName" />
+          <ScalarProperty Name="DebtorId" ColumnName="DebtorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="IdaDBModel.Transaction">
+        <MappingFragment StoreEntitySet="Transaction">
+          <ScalarProperty Name="SlipPath" ColumnName="SlipPath" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="item" ColumnName="item" />
+          <ScalarProperty Name="DateRecorded" ColumnName="DateRecorded" />
+          <ScalarProperty Name="LogisticBookId" ColumnName="LogisticBookId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InepVariances">
+      <EntityTypeMapping TypeName="IdaDBModel.InepVariance">
+        <MappingFragment StoreEntitySet="InepVariance">
+          <ScalarProperty Name="AmountRecieved" ColumnName="AmountRecieved" />
+          <ScalarProperty Name="CloseUp" ColumnName="CloseUp" />
+          <ScalarProperty Name="Construction" ColumnName="Construction" />
+          <ScalarProperty Name="Procurement" ColumnName="Procurement" />
+          <ScalarProperty Name="Design" ColumnName="Design" />
+          <ScalarProperty Name="Pre_Engineering" ColumnName="Pre_Engineering" />
+          <ScalarProperty Name="MunicipalityApproval" ColumnName="MunicipalityApproval" />
+          <ScalarProperty Name="ReportNumber" ColumnName="ReportNumber" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="OtherComments" ColumnName="OtherComments" />
+          <ScalarProperty Name="YearCorrectiveAction" ColumnName="YearCorrectiveAction" />
+          <ScalarProperty Name="YearVarianceReason" ColumnName="YearVarianceReason" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="MonthCorrectiveAction" ColumnName="MonthCorrectiveAction" />
+          <ScalarProperty Name="MonthVarianceReason" ColumnName="MonthVarianceReason" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="IdaDBModel.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="Municipality" ColumnName="Municipality" />
+          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+          <ScalarProperty Name="MunicipalityFaxNo" ColumnName="MunicipalityFaxNo" />
+          <ScalarProperty Name="MunicipalityTelNo" ColumnName="MunicipalityTelNo" />
+          <ScalarProperty Name="MunicipalityNo" ColumnName="MunicipalityNo" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="SourceOfFunding" ColumnName="SourceOfFunding" />
+          <ScalarProperty Name="ContractorType" ColumnName="ContractorType" />
+          <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+          <ScalarProperty Name="ProjectT" ColumnName="ProjectT" />
+          <ScalarProperty Name="ProjectNumber" ColumnName="ProjectNumber" />
+          <ScalarProperty Name="SubmitionDate" ColumnName="SubmitionDate" />
+          <ScalarProperty Name="BriefingDate" ColumnName="BriefingDate" />
+          <ScalarProperty Name="AdvertDate" ColumnName="AdvertDate" />
+          <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+          <ScalarProperty Name="DateRequested" ColumnName="DateRequested" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Date_Concluded" ColumnName="Date_Concluded" />
+          <ScalarProperty Name="Date_Started" ColumnName="Date_Started" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="IdaDBModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+          <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -298,6 +298,8 @@ namespace IDA.Controllers
                     var fileName = Path.GetFileName(file.FileName);
                     var path1 = Path.Combine(Server.MapPath("~/MD/img"), fileName);
                     file.SaveAs(path1);
+
+                   
                     p.FilePath = path1;
                     p.ProjectName = f["ProjectName"];
                     p.DateRequested = DateTime.Now;
@@ -308,6 +310,21 @@ namespace IDA.Controllers
                     p.AdvertDate = Convert.ToDateTime( f["AdvertDate"]);
                     p.BriefingDate = Convert.ToDateTime(f["BriefingDate"]);
                     p.SubmitionDate = Convert.ToDateTime(f["SubmitionDate"]);
+                    String name = "";
+                    DateTime dt = DateTime.Now;
+                    name = p.ProjectName.Substring(0, 4);
+                    p.ProjectNumber = name + dt.Month + "/" + dt.Year;
+                    p.ContractNumber = name + dt.Month + "/" + dt.Year;
+                    p.ContractorType = f["ContractorType"];
+                    p.SourceOfFunding = f["SourceOfFunding"];
+                    p.ProjectT = f["ProjectT"];
+                    p.Municipality = f["Municipality"];
+                    p.Province = f["Province"];
+                    p.MunicipalityNo = f["MunicipalityNo"];
+                    p.MunicipalityTelNo = f["MunicipalityTelNo"];
+                    p.MunicipalityFaxNo = f["MunicipalityFaxNo"];
+                    p.ContactPerson = f["ContactPerson"];
+
 
                     try
                     {

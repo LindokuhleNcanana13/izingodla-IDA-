@@ -35,6 +35,17 @@ namespace IDA.Models
         public Nullable<System.DateTime> AdvertDate { get; set; }
         public Nullable<System.DateTime> BriefingDate { get; set; }
         public Nullable<System.DateTime> SubmitionDate { get; set; }
+        public string ProjectNumber { get; set; }
+        public string ProjectT { get; set; }
+        public string ContractNumber { get; set; }
+        public string ContractorType { get; set; }
+        public string SourceOfFunding { get; set; }
+        public string Province { get; set; }
+        public string MunicipalityNo { get; set; }
+        public string MunicipalityTelNo { get; set; }
+        public string MunicipalityFaxNo { get; set; }
+        public string ContactPerson { get; set; }
+        public string Municipality { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssignedPM> AssignedPMs { get; set; }

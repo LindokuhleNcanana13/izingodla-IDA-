@@ -30,6 +30,13 @@
                 @ViewBag.Message
             </div>
         }
+        @if (ViewBag.error != null && ViewBag.error == "Only pdf, word and text files allowed!!")
+        {
+            <div class="alert alert-danger">
+                <a class="close" data-dismiss="alert" href="#">×</a>
+                @ViewBag.error
+            </div>
+        }
         <form method="post" enctype="multipart/form-data">
             @using (Html.BeginForm())
             {
@@ -39,7 +46,7 @@
 
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                   
+
 
                     <div class="form-group">
                         <label class="control-label col-md-2">Item</label>
@@ -57,7 +64,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-6"><b>Upload you Slip</b></label>
+                        <label class="control-label col-md-6"><b>Upload you Slip (<span style="color:red; font:italic">pdf,Word or Text files allowed</span>)</b></label>
                         <div class="col-md-10">
                             <input type="file" name="file" class="file-input" , required="true" />
                             @*@Html.ValidationMessageFor(model => model.SlipPath, "", new { @class = "text-danger" })*@
@@ -74,6 +81,6 @@
                     </div>
                 </div>
             }
-            </form>
+        </form>
     </div>
 </main>

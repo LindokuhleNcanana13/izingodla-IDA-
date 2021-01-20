@@ -62,24 +62,24 @@
                         </li>
                         <a href="/Employees/newRequests">
 
-                            <img src="~/Content/images/notification-flat.png" height="30px" style="margin-top:10px; margin-left:60px;" /><span class="badge badge-light"><a style="color:red;">@ViewData["GetReq"]</a></span>
+                            <img data-toggle="tooltip" title="Notifications" src="~/Content/images/notification-flat.png" height="30px" style="margin-top:10px; margin-left:60px;" /><span class="badge badge-light"><a style="color:red;">@ViewData["GetReq"]</a></span>
 
                         </a>
 
                     </ul>
                     <!-- Right -->
-                   
-                       <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @Session["Email"]
-                            </a>
 
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Session["Email"]
+                        </a>
 
-                                <a class="dropdown-item" href="/Employees/AdminProfile">Profile</a>
-                                <a class="dropdown-item" href="/Account/Login">Logout</a>
-                            </div>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                            <a class="dropdown-item" href="/Employees/AdminProfile">Profile</a>
+                            <a class="dropdown-item" href="/Account/Login">Logout</a>
                         </div>
+                    </div>
                     </ul>
                 </div>
             </div>
@@ -326,5 +326,10 @@
     @RenderSection("Scripts", false)
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 </body>
 </html>

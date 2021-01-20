@@ -212,6 +212,14 @@ namespace IDA.Controllers
                             return View(employee);
                         }
                         EmployeeDBHandler sdb = new EmployeeDBHandler();
+                        Random rnd = new Random();
+                        int myRandomNo = rnd.Next(10000000, 99999999);
+                        int year = employee.HireDate.Year;
+                        string initials = employee.Name.Substring(0,1);
+                        string surname = employee.Name.Substring(0, 1);
+                        String EmployeeNumber = ("Izi" + year + initials + surname + myRandomNo);
+                        employee.EmployeeNumber = EmployeeNumber;
+
                         if (sdb.AddEmployee(employee))
                         {
 
@@ -454,7 +462,7 @@ namespace IDA.Controllers
           
         }
         [HttpPost] 
-        public ActionResult ProjectDetails([Bind(Include = "ProjectId,ProjectName,Date_Started,Date_Concluded,ClientId,EmpId,FilePath,Description,DateRequested,ProjectType,Status,AdvertDate,BriefingDate,SubmitionDate")] Project project)
+        public ActionResult ProjectDetails(Project project)
         {
 
             Session["Path"] = project.FilePath;
@@ -733,9 +741,11 @@ namespace IDA.Controllers
                     NetworkCredential NetworkCred = new NetworkCredential("Izingodla.IDA@gmail.com", "izingodla@123");
                     smtp.UseDefaultCredentials = true;
                     smtp.Credentials = NetworkCred;
-                    smtp.Port = 587;
+                    smtp.Port = 8889;
                     smtp.Send(mm);
                 }
+
+                
             }
         }
     
@@ -829,7 +839,7 @@ namespace IDA.Controllers
             List<Project> bd = new List<Project>();
             foreach (var item in bid)
             {
-                if (item.ProjectType.Equals("Project Bid"))
+                if (item.ProjectType.Equals("Project Bid") && item.Status.Equals("Pending"))
                 {
                     bd.Add(item);
                 }

@@ -377,7 +377,7 @@ namespace IDA.Controllers
 
             }
             String fileName = Path.GetFileName(CurrentFileName);
-            return File(CurrentFileName, contentType, fileName);
+                return File(CurrentFileName, contentType, fileName);
 
 
         }

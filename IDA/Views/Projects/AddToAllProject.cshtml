@@ -39,59 +39,157 @@
                         <div class="form-horizontal">
 
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Project Name</label>
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4">Project Name</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                        @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                @Html.HiddenFor(model => model.DateRequested)
+
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4">Brief Description</label>
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Description, 3, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", @required = true })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4">Advert Date</label>
 
-      
-                            @Html.HiddenFor(model => model.DateRequested)
+                                    <div class="col-md-10">
+                                        <input type="date" @Html.EditorFor(model => model.AdvertDate, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+                                               @Html.ValidationMessageFor(model => model.AdvertDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4">Briefing Date</label>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Brief Description</label>
-                                <div class="col-md-10">
-                                    @Html.TextAreaFor(model => model.Description, 3, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;" })
-                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    <div class="col-md-10">
+                                        <input type="date" @Html.EditorFor(model => model.BriefingDate, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+                                               @Html.ValidationMessageFor(model => model.BriefingDate, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4">Submission Date</label>
 
-                            <div class="form-group">
-                                <label  class = "control-label col-md-4" >Advert Date</label>
-                               
-                                <div class="col-md-10">
-                                  <input type="date"  @Html.EditorFor(model => model.AdvertDate, new { htmlAttributes = new { @class = "form-control"} })
-                                    @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                                    <div class="col-md-10">
+                                        <input type="date" @Html.EditorFor(model => model.SubmitionDate, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+                                               @Html.ValidationMessageFor(model => model.SubmitionDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-5">Source of Funding</label>
+                                    <div class="col-md-10">
+                                        <select required="required" class="form-control" id="dropdown" name="@Html.NameFor(model => model.SourceOfFunding)">
+                                            <option value="">Choose</option>
+                                            <option value="Department of Energy">Department of Energy</option>
+                                            <option value="Eskom">Eskom</option>
+                                            <option value="Municipality">Municipality</option>
+                                            <option value="Donor">Donor</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-5">Project Type</label>
+                                    <div class="col-md-10">
+                                        <select class="form-control" id="dropdown" name="@Html.NameFor(model => model.ProjectT)" onchange="showTextArea()">
+                                            <option value="0">Choose</option>
+                                            <option value="Electrification">Electrification</option>
+                                            <option value="Households">Households</option>
+                                            <option value="Schools">Schools</option>
+                                            <option value="Bulk Infrastructure">Bulk Infrastructure</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-5">Contractor Type</label>
+                                    <div class="col-md-10">
+                                        <select required class="form-control" id="dropdown" name="@Html.NameFor(model => model.ContractorType)" onchange="showTextArea()">
+                                            <option value="0">Choose</option>
+                                            <option value="BEE">BEE</option>
+                                            <option value="BWO">BWO</option>
+                                            <option value="SMME">SMME</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-5">Province</label>
+                                    <div class="col-md-10">
+                                        <select class="form-control" id="dropdown" name="@Html.NameFor(model => model.Province)" onchange="showTextArea()">
+                                            <option value="0">Choose</option>
+                                            <option value="Gauteng">Gauteng</option>
+                                            <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                                            <option value="Eastern Cape">Eastern Cape</option>
+                                            <option value="Western Cape">Western Cape</option>
+                                            <option value="Northen Cape">Northen Cape</option>
+                                            <option value="North West">North West</option>
+                                            <option value="Free State">Free State</option>
+                                            <option value="Mpumalanga">Mpumalanga</option>
+                                            <option value="Limpopo">Limpopo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-5">Municipality</label>
+                                    <div class="col-md-10">
+                                        <input type="text" @Html.EditorFor(model => model.Municipality, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-7">Municipality Number</label>
+                                    <div class="col-md-10">
+                                        <input type="text" @Html.EditorFor(model => model.MunicipalityNo, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-7">Municipality Tel No</label>
+                                    <div class="col-md-10">
+                                        <input type="number" @Html.EditorFor(model => model.MunicipalityTelNo, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-7">Municipality Fax No</label>
+                                    <div class="col-md-10">
+                                        <input type="number" @Html.EditorFor(model => model.MunicipalityFaxNo, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-6">Attach your request <strong>Document</strong></label>
+                                    @*@Html.LabelFor(model => model.FilePath, htmlAttributes: new { @class = "control-label col-md-4" })*@
+                                    <div class="col-md-10">
+                                        <input type="file" name="file" class="file-input" , required="true" />
+                                        @Html.ValidationMessageFor(model => model.FilePath, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-4">Briefing Date</label>
+                                <label class="control-label col-md-7">Municipality Contact Person</label>
+                                <div class="col-md-11">
+                                    <input type="text" @Html.EditorFor(model => model.ContactPerson, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
 
-                                <div class="col-md-10">
-                                    <input type="date" @Html.EditorFor(model => model.BriefingDate, new { htmlAttributes = new { @class = "form-control" } })
-                                           @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Submission Date</label>
-
-                                <div class="col-md-10">
-                                    <input type="date" @Html.EditorFor(model => model.SubmitionDate, new { htmlAttributes = new { @class = "form-control" } })
-                                           @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-6">Attach <strong>Document</strong></label>
-                                @*@Html.LabelFor(model => model.FilePath, htmlAttributes: new { @class = "control-label col-md-4" })*@
-                                <div class="col-md-10">
-                                    <input type="file" name="file" class="file-input" , required="true"/>
-                                    @Html.ValidationMessageFor(model => model.FilePath, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Create" class="btn btn-success" />

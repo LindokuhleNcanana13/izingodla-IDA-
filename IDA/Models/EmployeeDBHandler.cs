@@ -36,6 +36,7 @@ namespace IDA.Models
             cmd.Parameters.AddWithValue("@Salary", employee.Salary);
             cmd.Parameters.AddWithValue("@Position", employee.Position);
             cmd.Parameters.AddWithValue("@HireDate", employee.HireDate);
+            cmd.Parameters.AddWithValue("@EmployeeNumber", employee.EmployeeNumber);
 
             con.Open();
             int i = cmd.ExecuteNonQuery();

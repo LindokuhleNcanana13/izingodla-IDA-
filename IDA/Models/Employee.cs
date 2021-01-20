@@ -18,6 +18,7 @@ namespace IDA.Models
         public Employee()
         {
             this.AssignedPMs = new HashSet<AssignedPM>();
+            this.InvoiceTbls = new HashSet<InvoiceTbl>();
         }
     
         public int EmpId { get; set; }
@@ -31,8 +32,11 @@ namespace IDA.Models
         public string Salary { get; set; }
         public string Position { get; set; }
         public System.DateTime HireDate { get; set; }
+        public string EmployeeNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssignedPM> AssignedPMs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InvoiceTbl> InvoiceTbls { get; set; }
     }
 }

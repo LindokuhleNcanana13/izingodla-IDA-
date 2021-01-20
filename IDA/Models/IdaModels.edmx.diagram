@@ -9,24 +9,31 @@
         <EntityTypeShape EntityType="IdaDBModel.AssignedPM" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.Assignment" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.Client" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IdaDBModel.Employee" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.EmpMeeting" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.Leave" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.LogisticBooking" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.Meeting" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IdaDBModel.Project" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.ProjectReport" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.Report" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.SubTask" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.Task" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.Tbl_UserActivation" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IdaDBModel.Transaction" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.User" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IdaDBModel.Vehicle" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="IdaDBModel.FK__AssignedP__EmpId__531856C7" ManuallyRouted="false" />
-        <AssociationConnector Association="IdaDBModel.FK__AssignedP__Proje__540C7B00" ManuallyRouted="false" />
         <EntityTypeShape EntityType="IdaDBModel.Feedback" Width="1.5" PointX="0.75" PointY="12.75" />
         <EntityTypeShape EntityType="IdaDBModel.ClientComment" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="IdaDBModel.Expenditure" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="IdaDBModel.Salary" Width="1.5" PointX="11.375" PointY="12.75" />
+        <EntityTypeShape EntityType="IdaDBModel.InvoiceTbl" Width="1.5" PointX="3" PointY="15.5" />
+        <EntityTypeShape EntityType="IdaDBModel.Creditor" Width="1.5" PointX="13.375" PointY="3.75" />
+        <EntityTypeShape EntityType="IdaDBModel.Debtor" Width="1.5" PointX="13.375" PointY="6.75" />
+        <EntityTypeShape EntityType="IdaDBModel.Transaction" Width="1.5" PointX="13.375" PointY="9.75" />
+        <EntityTypeShape EntityType="IdaDBModel.InepVariance" Width="1.5" PointX="7.375" PointY="12.75" />
+        <EntityTypeShape EntityType="IdaDBModel.Project" Width="1.5" PointX="13.375" PointY="14.125" />
+        <AssociationConnector Association="IdaDBModel.FK__AssignedP__Proje__540C7B00" />
+        <EntityTypeShape EntityType="IdaDBModel.Employee" Width="1.5" PointX="0.75" PointY="8.25" />
+        <AssociationConnector Association="IdaDBModel.FK__AssignedP__EmpId__531856C7" />
+        <AssociationConnector Association="IdaDBModel.FK__InvoiceTb__EmpId__4B622666" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

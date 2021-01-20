@@ -196,7 +196,7 @@ namespace IDA.Controllers
             ViewBag.ChooseEmp = new SelectList(GetEmployee, "EmpId", "Email");
             var GetTask = db.Tasks.ToList();
             ViewBag.ChooseTask = new SelectList(GetTask, "TaskId", "TaskDescription");
-            var GetSubTask = db.SubTasks.Where(c => !db.Assignments.Select(b => b.SubTaskId).Contains(c.SubTaskId));
+            var GetSubTask = db.SubTasks.Where(c => db.SubTasks.Select(b => b.SubTaskId).Contains(c.SubTaskId));
             ViewBag.ChoosesubTask = new SelectList(GetSubTask, "SubTaskId", "SubName");
             return View();
         }
@@ -213,7 +213,7 @@ namespace IDA.Controllers
 
            
 
-            var GetSubTask = db.SubTasks.Where(c => !db.Assignments.Select(b => b.SubTaskId).Contains(c.SubTaskId));
+            var GetSubTask = db.SubTasks.Where(c => db.SubTasks.Select(b => b.SubTaskId).Contains(c.SubTaskId));
             ViewBag.ChoosesubTask = new SelectList(GetSubTask, "SubTaskId", "SubName");
 
             return View();
@@ -225,10 +225,10 @@ namespace IDA.Controllers
             var GetEmployee = db.Employees.Where(c=>c.Position !=("CEO") && c.Email !=(UserEmail)).ToList();
             ViewBag.ChooseEmp = new SelectList(GetEmployee, "EmpId", "Email");
 
-            var GetTask = db.Tasks.Where(c => !db.Assignments.Select(b => b.TaskId).Contains(c.TaskId));
+            var GetTask = db.Tasks.Where(c => db.SubTasks.Select(b => b.TaskId).Contains(c.TaskId));
             ViewBag.ChooseTask = new SelectList(GetTask, "TaskId", "TaskDescription");
 
-            var GetSubTask = db.SubTasks.Where(c => !db.Assignments.Select(b => b.SubTaskId).Contains(c.SubTaskId));
+            var GetSubTask = db.SubTasks.Where(c => db.SubTasks.Select(b => b.SubTaskId).Contains(c.SubTaskId));
             ViewBag.ChoosesubTask = new SelectList(GetSubTask, "SubTaskId", "SubName");
 
             var UserId = db.Employees.Find(employee.EmpId);
