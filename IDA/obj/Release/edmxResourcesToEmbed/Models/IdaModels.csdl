@@ -22,8 +22,8 @@
     <Property Name="ProjectId" Type="Int32" />
     <Property Name="DateAssigned" Type="DateTime" Precision="0" />
     <Property Name="EmpPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Employee" Relationship="Self.FK__AssignedP__EmpId__531856C7" FromRole="AssignedPM" ToRole="Employee" />
-    <NavigationProperty Name="Project" Relationship="Self.FK__AssignedP__Proje__540C7B00" FromRole="AssignedPM" ToRole="Project" />
+    <NavigationProperty Name="Project" Relationship="IdaDBModel.FK__AssignedP__Proje__540C7B00" FromRole="AssignedPM" ToRole="Project" />
+    <NavigationProperty Name="Employee" Relationship="IdaDBModel.FK__AssignedP__EmpId__531856C7" FromRole="AssignedPM" ToRole="Employee" />
   </EntityType>
   <EntityType Name="Assignment">
     <Key>
@@ -50,23 +50,6 @@
     <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="DateRegistered" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="Employee">
-    <Key>
-      <PropertyRef Name="EmpId" />
-    </Key>
-    <Property Name="EmpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="IDNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Salary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="0" />
-    <NavigationProperty Name="AssignedPMs" Relationship="Self.FK__AssignedP__EmpId__531856C7" FromRole="Employee" ToRole="AssignedPM" />
   </EntityType>
   <EntityType Name="EmpMeeting">
     <Key>
@@ -127,27 +110,6 @@
     <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="MeetingNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="Project">
-    <Key>
-      <PropertyRef Name="ProjectId" />
-    </Key>
-    <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Date_Started" Type="DateTime" Precision="3" />
-    <Property Name="Date_Concluded" Type="DateTime" Precision="3" />
-    <Property Name="ClientId" Type="Int32" />
-    <Property Name="EmpId" Type="Int32" />
-    <Property Name="FilePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="DateRequested" Type="DateTime" Precision="0" />
-    <Property Name="ProjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="AdvertDate" Type="DateTime" Precision="3" />
-    <Property Name="BriefingDate" Type="DateTime" Precision="3" />
-    <Property Name="SubmitionDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="AssignedPMs" Relationship="Self.FK__AssignedP__Proje__540C7B00" FromRole="Project" ToRole="AssignedPM" />
-  </EntityType>
   <EntityType Name="ProjectReport">
     <Key>
       <PropertyRef Name="id" />
@@ -175,6 +137,7 @@
     <Property Name="SubTaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TaskId" Type="Int32" />
     <Property Name="SubName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NoOfDays" Type="Int32" />
   </EntityType>
   <EntityType Name="Task">
     <Key>
@@ -189,18 +152,6 @@
     </Key>
     <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ActivationCode" Type="Guid" />
-  </EntityType>
-  <EntityType Name="Transaction">
-    <Key>
-      <PropertyRef Name="TransactionId" />
-    </Key>
-    <Property Name="TransactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ProjectId" Type="Int32" />
-    <Property Name="LogisticBookId" Type="Int32" />
-    <Property Name="DateRecorded" Type="DateTime" Precision="3" />
-    <Property Name="item" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SlipPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -224,57 +175,22 @@
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="DateRegisterd" Type="DateTime" Precision="3" />
   </EntityType>
-  <Association Name="FK__AssignedP__EmpId__531856C7">
-    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-    <End Role="AssignedPM" Type="Self.AssignedPM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Employee">
-        <PropertyRef Name="EmpId" />
-      </Principal>
-      <Dependent Role="AssignedPM">
-        <PropertyRef Name="EmpId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__AssignedP__Proje__540C7B00">
-    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
-    <End Role="AssignedPM" Type="Self.AssignedPM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Project">
-        <PropertyRef Name="ProjectId" />
-      </Principal>
-      <Dependent Role="AssignedPM">
-        <PropertyRef Name="ProjectId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="IdaDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Admins" EntityType="Self.Admin" />
     <EntitySet Name="AssignedPMs" EntityType="Self.AssignedPM" />
     <EntitySet Name="Assignments" EntityType="Self.Assignment" />
     <EntitySet Name="Clients" EntityType="Self.Client" />
-    <EntitySet Name="Employees" EntityType="Self.Employee" />
     <EntitySet Name="EmpMeetings" EntityType="Self.EmpMeeting" />
     <EntitySet Name="Leaves" EntityType="Self.Leave" />
     <EntitySet Name="LogisticBookings" EntityType="Self.LogisticBooking" />
     <EntitySet Name="Meetings" EntityType="Self.Meeting" />
-    <EntitySet Name="Projects" EntityType="Self.Project" />
     <EntitySet Name="ProjectReports" EntityType="Self.ProjectReport" />
     <EntitySet Name="Reports" EntityType="Self.Report" />
     <EntitySet Name="SubTasks" EntityType="Self.SubTask" />
     <EntitySet Name="Tasks" EntityType="Self.Task" />
     <EntitySet Name="Tbl_UserActivation" EntityType="Self.Tbl_UserActivation" />
-    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
-    <AssociationSet Name="FK__AssignedP__EmpId__531856C7" Association="Self.FK__AssignedP__EmpId__531856C7">
-      <End Role="Employee" EntitySet="Employees" />
-      <End Role="AssignedPM" EntitySet="AssignedPMs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__AssignedP__Proje__540C7B00" Association="Self.FK__AssignedP__Proje__540C7B00">
-      <End Role="Project" EntitySet="Projects" />
-      <End Role="AssignedPM" EntitySet="AssignedPMs" />
-    </AssociationSet>
     <FunctionImport Name="AddNewClientRecord">
       <Parameter Name="Name" Mode="In" Type="String" />
       <Parameter Name="Surname" Mode="In" Type="String" />
@@ -321,6 +237,27 @@
     </FunctionImport>
     <EntitySet Name="Feedbacks" EntityType="IdaDBModel.Feedback" />
     <EntitySet Name="ClientComments" EntityType="IdaDBModel.ClientComment" />
+    <EntitySet Name="Expenditures" EntityType="IdaDBModel.Expenditure" />
+    <EntitySet Name="Salaries" EntityType="IdaDBModel.Salary" />
+    <EntitySet Name="InvoiceTbls" EntityType="IdaDBModel.InvoiceTbl" />
+    <EntitySet Name="Creditors" EntityType="IdaDBModel.Creditor" />
+    <EntitySet Name="Debtors" EntityType="IdaDBModel.Debtor" />
+    <EntitySet Name="Transactions" EntityType="IdaDBModel.Transaction" />
+    <EntitySet Name="InepVariances" EntityType="IdaDBModel.InepVariance" />
+    <EntitySet Name="Projects" EntityType="IdaDBModel.Project" />
+    <AssociationSet Name="FK__AssignedP__Proje__540C7B00" Association="IdaDBModel.FK__AssignedP__Proje__540C7B00">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="AssignedPM" EntitySet="AssignedPMs" />
+    </AssociationSet>
+    <EntitySet Name="Employees" EntityType="IdaDBModel.Employee" />
+    <AssociationSet Name="FK__AssignedP__EmpId__531856C7" Association="IdaDBModel.FK__AssignedP__EmpId__531856C7">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="AssignedPM" EntitySet="AssignedPMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoiceTb__EmpId__4B622666" Association="IdaDBModel.FK__InvoiceTb__EmpId__4B622666">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="InvoiceTbl" EntitySet="InvoiceTbls" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="getClient_Result">
     <Property Type="Int32" Name="ClientId" Nullable="false" />
@@ -396,4 +333,186 @@
     <Property Name="ProjectId" Type="Int32" Nullable="false" />
     <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="Expenditure">
+    <Key>
+      <PropertyRef Name="ExpenseId" />
+    </Key>
+    <Property Name="ExpenseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="EmpId" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Double" />
+  </EntityType>
+  <EntityType Name="Salary">
+    <Key>
+      <PropertyRef Name="SalaryId" />
+    </Key>
+    <Property Name="SalaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpId" Type="Int32" />
+    <Property Name="DatePaid" Type="DateTime" Precision="3" />
+    <Property Name="GrossAmount" Type="Double" />
+    <Property Name="HoursWorked" Type="Int32" />
+    <Property Name="HourRate" Type="Double" />
+    <Property Name="NetAmount" Type="Double" />
+    <Property Name="OverTimeHours" Type="Int32" />
+  </EntityType>
+  <EntityType Name="InvoiceTbl">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="EmpId" Type="Int32" />
+    <Property Name="DateDue" Type="DateTime" Precision="3" />
+    <Property Name="Invoicedate" Type="DateTime" Precision="3" />
+    <Property Name="StatusIvo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NoteMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="Item" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubTaskId" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="IdaDBModel.FK__InvoiceTb__EmpId__4B622666" FromRole="InvoiceTbl" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Creditor">
+    <Key>
+      <PropertyRef Name="CreditorId" />
+    </Key>
+    <Property Name="CreditorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreditorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="DateRecorded" Type="DateTime" Precision="3" />
+    <Property Name="CreditDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Debtor">
+    <Key>
+      <PropertyRef Name="DebtorId" />
+    </Key>
+    <Property Name="DebtorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DebtorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="DateRecorded" Type="DateTime" Precision="3" />
+    <Property Name="DebtDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="TransactionId" />
+    </Key>
+    <Property Name="TransactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="LogisticBookId" Type="Int32" />
+    <Property Name="DateRecorded" Type="DateTime" Precision="3" />
+    <Property Name="item" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="SlipPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="InepVariance">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Month" Type="DateTime" Precision="0" />
+    <Property Name="MonthVarianceReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MonthCorrectiveAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="DateTime" Precision="0" />
+    <Property Name="YearVarianceReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="YearCorrectiveAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OtherComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="ReportNumber" Type="Int32" />
+    <Property Name="MunicipalityApproval" Type="Double" />
+    <Property Name="Pre_Engineering" Type="Double" />
+    <Property Name="Design" Type="Double" />
+    <Property Name="Procurement" Type="Double" />
+    <Property Name="Construction" Type="Double" />
+    <Property Name="CloseUp" Type="Double" />
+    <Property Name="AmountRecieved" Type="Double" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+    </Key>
+    <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Started" Type="DateTime" Precision="3" />
+    <Property Name="Date_Concluded" Type="DateTime" Precision="3" />
+    <Property Name="ClientId" Type="Int32" />
+    <Property Name="EmpId" Type="Int32" />
+    <Property Name="FilePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DateRequested" Type="DateTime" Precision="0" />
+    <Property Name="ProjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AdvertDate" Type="DateTime" Precision="3" />
+    <Property Name="BriefingDate" Type="DateTime" Precision="3" />
+    <Property Name="SubmitionDate" Type="DateTime" Precision="3" />
+    <Property Name="ProjectNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContractNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContractorType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SourceOfFunding" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MunicipalityNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MunicipalityTelNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MunicipalityFaxNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Municipality" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AssignedPMs" Relationship="IdaDBModel.FK__AssignedP__Proje__540C7B00" FromRole="Project" ToRole="AssignedPM" />
+  </EntityType>
+  <Association Name="FK__AssignedP__Proje__540C7B00">
+    <End Type="IdaDBModel.Project" Role="Project" Multiplicity="0..1" />
+    <End Type="IdaDBModel.AssignedPM" Role="AssignedPM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="AssignedPM">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmpId" />
+    </Key>
+    <Property Name="EmpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IDNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Salary" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Position" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EmployeeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AssignedPMs" Relationship="IdaDBModel.FK__AssignedP__EmpId__531856C7" FromRole="Employee" ToRole="AssignedPM" />
+    <NavigationProperty Name="InvoiceTbls" Relationship="IdaDBModel.FK__InvoiceTb__EmpId__4B622666" FromRole="Employee" ToRole="InvoiceTbl" />
+  </EntityType>
+  <Association Name="FK__AssignedP__EmpId__531856C7">
+    <End Type="IdaDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="IdaDBModel.AssignedPM" Role="AssignedPM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="AssignedPM">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoiceTb__EmpId__4B622666">
+    <End Type="IdaDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="IdaDBModel.InvoiceTbl" Role="InvoiceTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="InvoiceTbl">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -33,7 +33,13 @@
                                     @ViewBag.MessageError
                                 </div>
                             }
-
+                            @if (ViewBag.ErrorMessage != null && ViewBag.ErrorMessage == "Email entered does not exist")
+                            {
+                                <div class="alert alert-danger">
+                                    <a class="close" data-dismiss="alert">×</a>
+                                    @ViewBag.ErrorMessage
+                                </div>
+                            }
                             @using (Html.BeginForm())
                             {
                                 @Html.AntiForgeryToken()

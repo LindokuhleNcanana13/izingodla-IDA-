@@ -58,6 +58,26 @@
     <Property Name="ProjectId" Type="int" Nullable="false" />
     <Property Name="Message" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="Creditor">
+    <Key>
+      <PropertyRef Name="CreditorId" />
+    </Key>
+    <Property Name="CreditorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreditorName" Type="varchar" MaxLength="50" />
+    <Property Name="Amount" Type="float" />
+    <Property Name="DateRecorded" Type="datetime" />
+    <Property Name="CreditDescription" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Debtor">
+    <Key>
+      <PropertyRef Name="DebtorId" />
+    </Key>
+    <Property Name="DebtorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DebtorName" Type="varchar" MaxLength="50" />
+    <Property Name="Amount" Type="float" />
+    <Property Name="DateRecorded" Type="datetime" />
+    <Property Name="DebtDescription" Type="nvarchar" MaxLength="100" />
+  </EntityType>
   <EntityType Name="Employee">
     <Key>
       <PropertyRef Name="EmpId" />
@@ -73,6 +93,7 @@
     <Property Name="Salary" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="HireDate" Type="date" Nullable="false" />
+    <Property Name="EmployeeNumber" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="EmpMeeting">
     <Key>
@@ -82,6 +103,17 @@
     <Property Name="EmpId" Type="int" />
     <Property Name="MeetingId" Type="int" />
     <Property Name="ClientId" Type="int" />
+  </EntityType>
+  <EntityType Name="Expenditure">
+    <Key>
+      <PropertyRef Name="ExpenseId" />
+    </Key>
+    <Property Name="ExpenseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="EmpId" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="Amount" Type="float" />
   </EntityType>
   <EntityType Name="Feedback">
     <Key>
@@ -94,6 +126,44 @@
     <Property Name="Reason" Type="varchar" MaxLength="100" />
     <Property Name="description" Type="varchar" MaxLength="100" />
     <Property Name="MeetingId" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="InepVariance">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Month" Type="date" />
+    <Property Name="MonthVarianceReason" Type="nvarchar(max)" />
+    <Property Name="MonthCorrectiveAction" Type="nvarchar(max)" />
+    <Property Name="Year" Type="date" />
+    <Property Name="YearVarianceReason" Type="nvarchar(max)" />
+    <Property Name="YearCorrectiveAction" Type="nvarchar(max)" />
+    <Property Name="OtherComments" Type="nvarchar(max)" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="ReportNumber" Type="int" />
+    <Property Name="MunicipalityApproval" Type="float" />
+    <Property Name="Pre_Engineering" Type="float" />
+    <Property Name="Design" Type="float" />
+    <Property Name="Procurement" Type="float" />
+    <Property Name="Construction" Type="float" />
+    <Property Name="CloseUp" Type="float" />
+    <Property Name="AmountRecieved" Type="float" />
+  </EntityType>
+  <EntityType Name="InvoiceTbl">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceNumber" Type="varchar" MaxLength="10" />
+    <Property Name="Amount" Type="float" />
+    <Property Name="EmpId" Type="int" />
+    <Property Name="DateDue" Type="datetime" />
+    <Property Name="Invoicedate" Type="datetime" />
+    <Property Name="StatusIvo" Type="varchar" MaxLength="50" />
+    <Property Name="NoteMessage" Type="varchar(max)" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="Item" Type="nvarchar" MaxLength="50" />
+    <Property Name="SubTaskId" Type="int" />
   </EntityType>
   <EntityType Name="Leave">
     <Key>
@@ -164,6 +234,17 @@
     <Property Name="AdvertDate" Type="datetime" />
     <Property Name="BriefingDate" Type="datetime" />
     <Property Name="SubmitionDate" Type="datetime" />
+    <Property Name="ProjectNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ProjectT" Type="varchar" MaxLength="50" />
+    <Property Name="ContractNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ContractorType" Type="varchar" MaxLength="50" />
+    <Property Name="SourceOfFunding" Type="varchar" MaxLength="50" />
+    <Property Name="Province" Type="varchar" MaxLength="50" />
+    <Property Name="MunicipalityNo" Type="varchar" MaxLength="50" />
+    <Property Name="MunicipalityTelNo" Type="varchar" MaxLength="20" />
+    <Property Name="MunicipalityFaxNo" Type="varchar" MaxLength="20" />
+    <Property Name="ContactPerson" Type="varchar" MaxLength="50" />
+    <Property Name="Municipality" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="ProjectReport">
     <Key>
@@ -185,6 +266,19 @@
     <Property Name="TargetedHours" Type="int" />
     <Property Name="EmpId" Type="int" />
   </EntityType>
+  <EntityType Name="Salary">
+    <Key>
+      <PropertyRef Name="SalaryId" />
+    </Key>
+    <Property Name="SalaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpId" Type="int" />
+    <Property Name="DatePaid" Type="datetime" />
+    <Property Name="GrossAmount" Type="float" />
+    <Property Name="HoursWorked" Type="int" />
+    <Property Name="HourRate" Type="float" />
+    <Property Name="NetAmount" Type="float" />
+    <Property Name="OverTimeHours" Type="int" />
+  </EntityType>
   <EntityType Name="SubTask">
     <Key>
       <PropertyRef Name="SubTaskId" />
@@ -192,6 +286,7 @@
     <Property Name="SubTaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TaskId" Type="int" />
     <Property Name="SubName" Type="nvarchar(max)" />
+    <Property Name="NoOfDays" Type="int" />
   </EntityType>
   <EntityType Name="Task">
     <Key>
@@ -216,7 +311,7 @@
     <Property Name="LogisticBookId" Type="int" />
     <Property Name="DateRecorded" Type="datetime" />
     <Property Name="item" Type="nvarchar" MaxLength="100" />
-    <Property Name="Price" Type="varchar" MaxLength="50" />
+    <Property Name="Price" Type="float" />
     <Property Name="SlipPath" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="User">
@@ -262,6 +357,18 @@
       </Principal>
       <Dependent Role="AssignedPM">
         <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoiceTb__EmpId__4B622666">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="InvoiceTbl" Type="Self.InvoiceTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="InvoiceTbl">
+        <PropertyRef Name="EmpId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -315,15 +422,21 @@
     <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ClientComment" EntityType="Self.ClientComment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Creditor" EntityType="Self.Creditor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Debtor" EntityType="Self.Debtor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EmpMeeting" EntityType="Self.EmpMeeting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Expenditure" EntityType="Self.Expenditure" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InepVariance" EntityType="Self.InepVariance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceTbl" EntityType="Self.InvoiceTbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LogisticBooking" EntityType="Self.LogisticBooking" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProjectReport" EntityType="Self.ProjectReport" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Salary" EntityType="Self.Salary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubTask" EntityType="Self.SubTask" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_UserActivation" EntityType="Self.Tbl_UserActivation" Schema="dbo" store:Type="Tables" />
@@ -337,6 +450,10 @@
     <AssociationSet Name="FK__AssignedP__Proje__540C7B00" Association="Self.FK__AssignedP__Proje__540C7B00">
       <End Role="Project" EntitySet="Project" />
       <End Role="AssignedPM" EntitySet="AssignedPM" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoiceTb__EmpId__4B622666" Association="Self.FK__InvoiceTb__EmpId__4B622666">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="InvoiceTbl" EntitySet="InvoiceTbl" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

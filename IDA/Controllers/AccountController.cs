@@ -254,22 +254,30 @@ namespace IDA.Controllers
 
             using (MailMessage mm = new MailMessage("Izingodla.IDA@gmail.com", user.Email))
             {
-                mm.Subject = "Account Activation";
-                string body = "Hello " + user.Name + ",";
-                body += "<br /><br />Please click the following link to activate your account";
-                body += "<br /><a href = '" + string.Format("{0}://{1}/Account/Login/{2}", Request.Url.Scheme, Request.Url.Authority, activationCode) + "'>Click here to activate your account.</a>";
-                body += "<br /><br />Thanks";
-                mm.Body = body;
-                mm.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient();
-                smtp.Host = "smtp.gmail.com";
-                smtp.EnableSsl = true;
-                NetworkCredential NetworkCred = new NetworkCredential("Izingodla.IDA@gmail.com", "izingodla@123");
-                smtp.UseDefaultCredentials = true;
-                smtp.Credentials = NetworkCred;
-                smtp.Port = 587;
-                smtp.Send(mm);
+                try
+                {
 
+                    mm.Subject = "Account Activation";
+                    string body = "Hello " + user.Name + ",";
+                    body += "<br /><br />Please click the following link to activate your account";
+                    body += "<br /><a href = '" + string.Format("{0}://{1}/Account/Login/{2}", Request.Url.Scheme, Request.Url.Authority, activationCode) + "'>Click here to activate your account.</a>";
+                    body += "<br /><br />Thanks";
+                    mm.Body = body;
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential("Izingodla.IDA@gmail.com", "izingodla@123");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+                }
+                catch (SmtpException)
+                {
+                    ViewBag.ErrorMessage = "Email entered does not exist";
+                }
+               
                 //To fix the smt error use link bellow
                 //https://stackoverflow.com/questions/20906077/gmail-error-the-smtp-server-requires-a-secure-connection-or-the-client-was-not
                 //mvc charts

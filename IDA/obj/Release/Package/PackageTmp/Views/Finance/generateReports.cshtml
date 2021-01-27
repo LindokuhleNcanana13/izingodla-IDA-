@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "generateReports";
+    Layout = "~/Views/Shared/FinanceManagerLayout.cshtml";
+}
+<br />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
+
+<main class="pt-5 mx-sm-5">
+    <div id="page-content-wrapper">
+        <br /> <br />
+        <div class="card mb-4 wow fadeIn">
+            <!--Card content-->
+            <div style="text-align:center;" class="card-body d-sm-flex justify-content-between">
+                <h4 class="mb-2 mb-sm-0 pt-1">
+                    <a style="color:orangered; ">Reports</a>
+
+                </h4>
+                <a class="btn btn-primary" style="border-radius:10px" href="/Finance/GetAllExpense"><i class="fa fa-arrow-left mr-2"></i>Back</a>
+
+            </div>
+        </div>
+
+        <br />
+        <div class="jumbotron">
+            <h3 style="text-align:center">Choose Report Category</h3>
+            <br />
+            <div class="dropdown" style="margin-left: 200px;">
+                <a class="btn btn-primary dropdown-toggle" style="width:80%" type="button" data-toggle="dropdown">
+                    Reports
+                </a>
+
+                <div style="text-align:center" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                    <a class="dropdown-item" href="/Finance/inepPartReport">INEP Part</a>
+                    <a class="dropdown-item" href="/Finance/ViewInfoReprt">M & E Part</a>
+                    <a class="dropdown-item" href="#">Chart 1</a>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $('select').selectize({
+                            sortField: 'text'
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</main>
+
+

@@ -721,28 +721,36 @@ namespace IDA.Controllers
                 usersEntities.SaveChanges();
                 using (MailMessage mm = new MailMessage("Izingodla.IDA@gmail.com", user.NewClientEmail))
                 {
-                    mm.Subject = "Meeting Invitation";
-                    string body = "Dear Sir/Ma'am,";
-                    body += "<br /><br />You are being invited to the meeting by Izingodla Engineering.";
-                    body += "<br /><br /><b>Meeting ID: </b>" + MeetingNo;
-                    body += "<br /><br />Subject: " + Subject;
-                    body += "<br /><br />Start Time: " + StartDate;
-                    body += "<br /><br />End Time: " + EndDate;
-                    body += "<br /><br />Location: " + Description;
-                    body += "<br /><br />Please click the following link if you won't be available";
-                    body += "<br /><a href = '" + string.Format("{0}://{1}/Employees/Feedback/{2}", Request.Url.Scheme, Request.Url.Authority, null) + "'>Click here to give feedback.</a>";
-                    body += "<br /><br /> We would be awaiting your esteemed presence in the meeting. Please feel free to contact us anytime, if you require any change in the meeting schedule.";
-                    body += "<br /><br />Thanks <br /> Izingodla Team";
-                    mm.Body = body;
-                    mm.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    NetworkCredential NetworkCred = new NetworkCredential("Izingodla.IDA@gmail.com", "izingodla@123");
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Credentials = NetworkCred;
-                    smtp.Port = 8889;
-                    smtp.Send(mm);
+                    try
+                    {
+
+                        mm.Subject = "Meeting Invitation";
+                        string body = "Dear Sir/Ma'am,";
+                        body += "<br /><br />You are being invited to the meeting by Izingodla Engineering.";
+                        body += "<br /><br /><b>Meeting ID: </b>" + MeetingNo;
+                        body += "<br /><br />Subject: " + Subject;
+                        body += "<br /><br />Start Time: " + StartDate;
+                        body += "<br /><br />End Time: " + EndDate;
+                        body += "<br /><br />Location: " + Description;
+                        body += "<br /><br />Please click the following link if you won't be available";
+                        body += "<br /><a href = '" + string.Format("{0}://{1}/Employees/Feedback/{2}", Request.Url.Scheme, Request.Url.Authority, null) + "'>Click here to give feedback.</a>";
+                        body += "<br /><br /> We would be awaiting your esteemed presence in the meeting. Please feel free to contact us anytime, if you require any change in the meeting schedule.";
+                        body += "<br /><br />Thanks <br /> Izingodla Team";
+                        mm.Body = body;
+                        mm.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential NetworkCred = new NetworkCredential("Izingodla.IDA@gmail.com", "izingodla@123");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 8889;
+                        smtp.Send(mm);
+                    }
+                    catch (SmtpException)
+                    {
+                        ViewBag.ErrorMessage = "Server Error";
+                    }
                 }
 
                 
